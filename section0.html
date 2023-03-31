@@ -9,10 +9,22 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #Timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  font-size: 30px;
+  font-style:italic;
+}
+  </style>
+
 </head>
 
 
 <body>
+    
     <!-- navbar section -->
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
@@ -29,10 +41,49 @@
     </nav>
     <nav class="navbar navbar-light bg-light">
         <div class="navbar-nav ms-auto">
+            <!-- Temp Countdown Timer: -->
             <div class="d-flex align-items-center">
-                <button class="btn btn-sm btn-outline-primary me-2">Hide Time</button>
-                <span class="navbar-text me-2">00:00:00</span>
-            </div>
+                <button id="toggleTimerBtn" class="btn btn-sm btn-outline-primary me-2">Hide Time</button>
+                <span id="Timer" class="navbar-text me-2"></span>
+              </div>
+              
+              <script>
+                const startTime = 1;
+                let time = startTime * 100; 
+                const countDownE = document.getElementById('Timer');
+                let countdownInterval = setInterval(update, 1000);
+              
+                function update() {
+                  const min = Math.floor(time / 60);
+                  let second = time % 60;
+                  if (second < 10) {
+                    second = '0' + second;
+                  }
+                  countDownE.innerHTML = `${min}:${second}`;
+              
+                  if (time == 0) {
+                    clearInterval(countdownInterval);
+                    alert("Time's up!");
+                  } else {
+                    time -= 1;
+              
+                    if (time < 60) {
+                      alert("The test is about to close soon!");
+                    }
+                  }
+                }
+              
+                const toggleTimerBtn = document.getElementById('toggleTimerBtn');
+                toggleTimerBtn.addEventListener('click', () => {
+                  if (countDownE.style.display !== 'none') {
+                    countDownE.style.display = 'none';
+                    toggleTimerBtn.textContent = 'Display Time';
+                  } else {
+                    countDownE.style.display = 'inline-block';
+                    toggleTimerBtn.textContent = 'Hide Time';
+                  }
+                });
+              </script>
         </div>
     </nav>
     <nav class="navbar navbar-light bg-light">
@@ -42,7 +93,7 @@
             </div>
         </div>
     </nav>
-
+   
     <!-- question content -->
     <div class="container">
     <div class="row custom-bigmt">
@@ -126,9 +177,9 @@
                         <div class="col-md-3"> 
                             <div class="input-group input-group-sm">
                                 <label  style="float: left; padding-right: 10px;"> Image Size</label>
-                                <button class="btn btn-sm btn-outline-secondary" type="button">-</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="changeImageSize('imageSize', -10)">-</button>
                                 <input type="text" id="image-size-display" class="form-control text-center" value="100%" aria-label="Select Image Size" style="display: inline-block; max-width: 55px;">
-                                <button class="btn btn-sm btn-outline-secondary" type="button">+</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="changeImageSize('imageSize', 10)">+</button>
                             </div>
                         </div>
                         <div class="col-md-3"> 
@@ -144,9 +195,9 @@
                         <div class="col-md-3"> 
                             <div class="input-group input-group-sm">
                                 <label  style="float: left; padding-right: 10px;"> Font Size</label>
-                                <button class="btn btn-sm btn-outline-secondary" type="button">-</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="changeFontSize('fontSize', -1)">-</button>
                                 <input type="text" id="font-size-display" class="form-control text-center" value="20" aria-label="Select Font Size" style="display: inline-block; max-width: 55px;">
-                                <button class="btn btn-sm btn-outline-secondary" type="button">+</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="changeFontSize('fontSize', 1)">+</button>
                             </div>
                         </div>
                         <div class="col-md-3"> </div>
@@ -160,16 +211,16 @@
                          <div class="col-md-3"> 
                             <div class="input-group input-group-sm">
                                 <label  style="float: left; padding-right: 10px;"> Timer Size</label>
-                                <button class="btn btn-sm btn-outline-secondary" type="button">-</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="changeTimerSize('timerSize', -5)">-</button>
                                 <input type="text" id="timer-size-display" class="form-control text-center" value="100%" aria-label="Select Image Size" style="display: inline-block; max-width: 55px;">
-                                <button class="btn btn-sm btn-outline-secondary" type="button">+</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="changeTimerSize('timerSize', 5)">+</button>
                             </div>
                         </div>
                     </div>
 
                     <div class="row mt-2">
                         <div class="col-md-3"> 
-                            <label class="color-select" for="color-picker" style="float: left; padding-right: 10px;">Font Color</label>
+                            <label class="color-select" for="font-color-picker" style="float: left; padding-right: 10px;">Font Color</label>
                             <input type="color" id="font-color-picker" name="font-color-picker" value="#000000">
                         </div>
                         <div class="col-md-3"> </div>
@@ -187,6 +238,35 @@
     </div>
 
     <script src="scripts/section0.js"> </script>
+    <script type="text/javascript">
+		function changeFontSize(id, increment) {
+			var input = document.getElementById("font-size-display");
+            var newValue = parseInt(input.value) + increment;
+            if (newValue > 0) {
+                input.value = newValue;
+                var colorInput = document.getElementById("font-color-picker");
+                var textColor = colorInput.value;
+                var textElements = document.getElementsByClassName("text-color");
+                for (var i = 0; i < textElements.length; i++) {
+                    textElements[i].style.color = textColor;
+                }
+            }
+		}
+        function changeImageSize(id, increment) {
+			var input = document.getElementById("image-size-display");
+			var newValue = parseInt(input.value) + increment;
+			if (newValue > 0) {
+				input.value = newValue + "%";
+			}
+		}
+        function changeTimerSize(id, increment) {
+			var input = document.getElementById("timer-size-display");
+			var newValue = parseInt(input.value) + increment;
+			if (newValue > 0) {
+				input.value = newValue + "%";
+			}
+		}
+	</script>
 </body>
 
 
