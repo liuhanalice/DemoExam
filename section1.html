@@ -20,12 +20,13 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <div class="navbar-nav me-auto">
-            <span class="navbar-text"><b>Section 0</b></span>
+            <span class="navbar-text"><b>Section 1</b></span>
             </div>
             <div class="navbar-nav ms-auto">
                 <div>
-                    <button class="btn btn-outline-primary qbutton">Back</br>&lt-</button>
-                    <button class="btn btn-outline-primary qbutton">Next</br>-&gt</button>
+                    <button class="btn btn-outline-primary qbutton" id="submit-button" style="text-align: center; background-color:aliceblue; padding: 0px;">Submit</br>Section</button>
+                    <button class="btn btn-outline-primary qbutton" id="back-button">Back</br>&lt-</button>
+                    <button class="btn btn-outline-primary qbutton" id="next-button">Next</br>-&gt</button>
                 </div>
             </div>
         </div>
@@ -82,7 +83,7 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <div class="mx-auto text-center">
-                <span class="navbar-text d-block"><b>Question 0 of 3</b></span>
+                <span class="navbar-text d-block"><b>Question <span id="question-number">1</span> of 3</b></span>
             </div>
         </div>
     </nav>
@@ -90,51 +91,52 @@
     <!-- question content -->
     <div class="container" id="question-content">
     <div class="row custom-bigmt">
-      <div class="col-md-6" id="question-col">
+      <div class="col" id="question-col">
         <!-- question text -->
-        <p>This is what the demo exam interface looks like. You may hide or expand the interface setting panel to customize your interface. Feel free to play around now. After you are familiar with the interface, please click the start button to start the demo exam.</p>
+        <p id="question-text">A certain pet store sells only dogs and cats. In March, the store sold twice as many dogs as cats. In April, the store sold twice the number of dogs that it sold in March, and three times the number of cats that it sold in March. If the total number of pets the store sold in March and April combined was 500, how many dogs did the store sell in March?</p>
         <!-- options form -->
         <div class="row mt-5">
-            <form>
+            <form id="options-form">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="option" id="option-a" value="option-a">
-                    <label class="form-check-label" for="option-a">
-                    A
+                    <input class="form-check-input" type="radio" name="option" id="option-0" value="80">
+                    <label class="form-check-label" for="option-0">
+                    80
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="option" id="option-b" value="option-b">
-                    <label class="form-check-label" for="option-b">
-                    B
+                    <input class="form-check-input" type="radio" name="option" id="option-1" value="100">
+                    <label class="form-check-label" for="option-1">
+                    100
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="option" id="option-c" value="option-c">
-                    <label class="form-check-label" for="option-c">
-                    C
+                    <input class="form-check-input" type="radio" name="option" id="option-2" value="120">
+                    <label class="form-check-label" for="option-2">
+                    120
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="option" id="option-d" value="option-d">
-                    <label class="form-check-label" for="option-d">
-                    D
+                    <input class="form-check-input" type="radio" name="option" id="option-3" value="160">
+                    <label class="form-check-label" for="option-3">
+                    160
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="option" id="option-4" value="180">
+                    <label class="form-check-label" for="option-4">
+                    180
                     </label>
                 </div>
             </form>
         </div>
       </div>
-      <div class="col-md-6" id="img-col">
+      <!-- <div class="col-md-6" id="img-col">
         <img src="img/img_placeholder.png" alt="Placeholder Image" class="placeholder-img" id="sec0-qimg">
-      </div>
+      </div> -->
     </div>
     </div>
 
-    <!-- start button -->
-    <div class="container">
-    <div class="custom-bigmt text-center">
-        <a href=section1.html class="btn btn-lg btn-outline-primary">START</a>
-    </div>
-    </div>
+
 
     <!-- interface panel -->
     <div class="container">
@@ -180,9 +182,9 @@
                         <div class="col-md-3"> 
                             <div class="input-group input-group-sm">
                                 <label  style="float: left; padding-right: 10px;"> Image Size</label>
-                                <button class="btn btn-sm btn-outline-secondary" type="button" id="decrease-img-size">-</button>
-                                <input type="text" id="image-size-input" class="form-control text-center" value="100%" aria-label="Select Image Size" style="display: inline-block; max-width: 55px;">
-                                <button class="btn btn-sm btn-outline-secondary" type="button" id="increase-img-size">+</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" id="decrease-img-size" disabled>-</button>
+                                <input type="text" id="image-size-input" class="form-control text-center" value="100%" aria-label="Select Image Size Disabled" style="display: inline-block; max-width: 55px;" disabled>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" id="increase-img-size" disabled>+</button>
                             </div>
                         </div>
                         <div class="col-md-3"> 
@@ -206,7 +208,7 @@
                         <div class="col-md-3"> </div>
                         <div class="col-md-3">
                             <label for="img-pos-select">Image Position </label>
-                            <select class="form-select-sm" id="img-pos-select" aria-label="Select Image Position">
+                            <select class="form-select-sm" id="img-pos-select" aria-label="Select Image Position Disabled" disabled>
                                 <option selected value="default">To the Right</option>
                                 <option value="1">To the Left</option>
                                 </select>
@@ -240,7 +242,7 @@
     </div>
     </div>
 
-    <script src="scripts/section0.js"> </script>
+    <script src="scripts/section1.js"> </script>
 </body>
 
 
