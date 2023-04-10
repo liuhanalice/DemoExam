@@ -9,7 +9,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+  <script>
+    
+  </script>
 
 </head>
 
@@ -119,6 +121,7 @@
                   isCountUp = false;
                 }
               });
+              
             </script>
           </div>
     </nav>
@@ -282,7 +285,83 @@
         </div>
     </div>
     </div>
+    <script>
+      // Selecting the relevant elements
+const fontStyleSelect = document.querySelector('#font-style-select');
+const backgroundColorPicker = document.querySelector('#bkg-color-picker');
+const imageSizeInput = document.querySelector('#image-size-input');
+const decreaseImageSizeBtn = document.querySelector('#decrease-img-size');
+const increaseImageSizeBtn = document.querySelector('#increase-img-size');
+const timerStyleSelect = document.querySelector('#timer-style-select');
+const fontSizeInput = document.querySelector('#font-size-input');
+const decreaseFontSizeBtn = document.querySelector('#decrease-font-size');
+const increaseFontSizeBtn = document.querySelector('#increase-font-size');
+const imagePositionSelect = document.querySelector('#img-pos-select');
+const timerSizeInput = document.querySelector('#timer-size-input');
+const decreaseTimerSizeBtn = document.querySelector('#decrease-timer-size');
+const increaseTimerSizeBtn = document.querySelector('#increase-timer-size');
+const fontColorPicker = document.querySelector('#font-color-picker');
+const timerColorPicker = document.querySelector('#timer-color-picker');
+const resetButton = document.querySelector('#ui-reset-btn');
 
+// Adding event listeners
+fontStyleSelect.addEventListener('change', () => {
+  console.log(`User changed font style to ${fontStyleSelect.value}`);
+});
+
+backgroundColorPicker.addEventListener('change', () => {
+  console.log(`User changed background color to ${backgroundColorPicker.value}`);
+});
+
+decreaseImageSizeBtn.addEventListener('click', () => {
+  imageSizeInput.value = parseInt(imageSizeInput.value) - 1;
+  console.log(`User decreased image size to ${imageSizeInput.value}`);
+});
+
+increaseImageSizeBtn.addEventListener('click', () => {
+  imageSizeInput.value = parseInt(imageSizeInput.value) + 1;
+  console.log(`User increased image size to ${imageSizeInput.value}`);
+});
+
+timerStyleSelect.addEventListener('change', () => {
+  console.log(`User changed timer style to ${timerStyleSelect.value}`);
+});
+
+decreaseFontSizeBtn.addEventListener('click', () => {
+  fontSizeInput.value = parseInt(fontSizeInput.value) - 2;
+  console.log(`User decreased font size to ${fontSizeInput.value}`);
+});
+
+increaseFontSizeBtn.addEventListener('click', () => {
+  fontSizeInput.value = parseInt(fontSizeInput.value) + 2;
+  console.log(`User increased font size to ${fontSizeInput.value}`);
+});
+
+imagePositionSelect.addEventListener('change', () => {
+  console.log(`User changed image position to ${imagePositionSelect.value}`);
+});
+
+decreaseTimerSizeBtn.addEventListener('click', () => {
+  timerSizeInput.value = parseInt(timerSizeInput.value) - 1;
+  console.log(`User decreased timer size to ${timerSizeInput.value}`);
+});
+
+increaseTimerSizeBtn.addEventListener('click', () => {
+  timerSizeInput.value = parseInt(timerSizeInput.value) + 1;
+  console.log(`User increased timer size to ${timerSizeInput.value}`);
+});
+
+fontColorPicker.addEventListener('change', () => {
+  console.log(`User changed font color to ${fontColorPicker.value}`);
+});
+timerColorPicker.addEventListener('change', () => {
+  console.log(`User changed timer color to ${timerColorPicker.value}`);
+});
+resetButton.addEventListener('click', () => {
+  console.log('User clicked reset button');
+});
+
+    </script>
     <script src="scripts/section0.js"> </script>
 </body>
 
