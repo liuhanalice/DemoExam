@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="styles.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
 </head>
 
 
@@ -34,50 +33,95 @@
         <div class="navbar-nav ms-auto">
             <!-- Temp Countdown Timer: -->
             <div class="d-flex align-items-center">
-                <button id="toggleTimerBtn" class="btn btn-sm btn-outline-primary me-2">Hide Time</button>
-                <span id="Timer" class="navbar-text me-2"></span>
-              </div>
-              
-              <script>
-                const startTime = 1;
-                let time = startTime * 100; 
-                const countDownE = document.getElementById('Timer');
-                let countdownInterval = setInterval(update, 1000);
-                let onem_alert = 0;
-              
-                function update() {
-                  const min = Math.floor(time / 60);
-                  let second = time % 60;
+
+              <button id="toggleTimerBtn" class="btn btn-sm btn-outline-primary me-2">Hide Time</button>
+              <button id="countUpBtn" class="btn btn-sm btn-outline-primary me-2">Count Up</button>
+              <span id="Timer" class="navbar-text me-2"></span>
+            </div>
+          
+            <script>
+              const totalTime = 1 * 100;
+              let time = totalTime;
+              const countDownE = document.getElementById('Timer');
+              let countdownInterval = setInterval(updateCountdown, 1000);
+              let onem_alert = 0;
+              let isCountUp = false;
+              let remainingTime = 0;
+          
+              function updateCountdown() {
+                const min = Math.floor(time / 60);
+                let second = time % 60;
+                if (second < 10) {
+                  second = '0' + second;
+                }
+                countDownE.innerHTML = `${min}:${second}`;
+          
+                if (time == 0) {
+                  clearInterval(countdownInterval);
+                  alert("Time's up!");
+                } else {
+                  time -= 1;
+          
+                  if (time < 60 && onem_alert == 0) {
+                    alert("The test is about to close soon!");
+                    onem_alert = 1;
+                  }
+                }
+              }
+          
+              function startCountUp(remainingTime) {
+                clearInterval(countdownInterval);
+                countDownE.innerHTML = '';
+          
+                let countUpTime = totalTime - remainingTime;
+                let countUpInterval = setInterval(() => {
+                  const min = Math.floor(countUpTime / 60);
+                  let second = countUpTime % 60;
                   if (second < 10) {
                     second = '0' + second;
                   }
                   countDownE.innerHTML = `${min}:${second}`;
-              
-                  if (time == 0) {
-                    clearInterval(countdownInterval);
+          
+                  if (countUpTime > totalTime) {
+                    clearInterval(countUpInterval);
                     alert("Time's up!");
                   } else {
-                    time -= 1;
-              
-                    if (time < 60 && onem_alert == 0) {
-                      alert("The test is about to close soon!");
-                      onem_alert = 1;
-                    }
+                    countUpTime += 1;
                   }
+                }, 1000);
+              }
+          
+              const toggleTimerBtn = document.getElementById('toggleTimerBtn');
+              toggleTimerBtn.addEventListener('click', () => {
+                if (countDownE.style.display !== 'none') {
+                  countDownE.style.display = 'none';
+                  toggleTimerBtn.textContent = 'Display Time';
+                  countUpBtn.style.display = 'none'; // hide count up/down button
+                } else {
+                  countDownE.style.display = 'inline-block';
+                  toggleTimerBtn.textContent = 'Hide Time';
+                  countUpBtn.style.display = 'inline-block'; // show count up/down button
                 }
+              });
+          
+              const countUpBtn = document.getElementById('countUpBtn');
+              countUpBtn.addEventListener('click', () => {
+                if (!isCountUp) {
+                  clearInterval(countdownInterval);
+                  remainingTime = time;
+                  startCountUp(remainingTime);
+                  countUpBtn.textContent = 'Count Down';
+                  isCountUp = true;
+                } else {
+                  clearInterval(countdownInterval);
+                  countdownInterval = setInterval(updateCountdown, 1000);
+                  countUpBtn.textContent = 'Count Up';
+                  isCountUp = false;
+                }
+              });
               
-                const toggleTimerBtn = document.getElementById('toggleTimerBtn');
-                toggleTimerBtn.addEventListener('click', () => {
-                  if (countDownE.style.display !== 'none') {
-                    countDownE.style.display = 'none';
-                    toggleTimerBtn.textContent = 'Display Time';
-                  } else {
-                    countDownE.style.display = 'inline-block';
-                    toggleTimerBtn.textContent = 'Hide Time';
-                  }
-                });
-              </script>
-        </div>
+            </script>
+          </div>
     </nav>
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
@@ -239,7 +283,100 @@
         </div>
     </div>
     </div>
+    <button id="display-log-btn">Display Console Log</button>
+    <script>
+      // Selecting the relevant elements
+const fontStyleSelect = document.querySelector('#font-style-select');
+const backgroundColorPicker = document.querySelector('#bkg-color-picker');
+const imageSizeInput = document.querySelector('#image-size-input');
+const decreaseImageSizeBtn = document.querySelector('#decrease-img-size');
+const increaseImageSizeBtn = document.querySelector('#increase-img-size');
+const timerStyleSelect = document.querySelector('#timer-style-select');
+const fontSizeInput = document.querySelector('#font-size-input');
+const decreaseFontSizeBtn = document.querySelector('#decrease-font-size');
+const increaseFontSizeBtn = document.querySelector('#increase-font-size');
+const imagePositionSelect = document.querySelector('#img-pos-select');
+const timerSizeInput = document.querySelector('#timer-size-input');
+const decreaseTimerSizeBtn = document.querySelector('#decrease-timer-size');
+const increaseTimerSizeBtn = document.querySelector('#increase-timer-size');
+const fontColorPicker = document.querySelector('#font-color-picker');
+const timerColorPicker = document.querySelector('#timer-color-picker');
+const resetButton = document.querySelector('#ui-reset-btn');
 
+// Adding event listeners
+const displayLogBtn = document.querySelector('#display-log-btn');
+const consoleLog = [];
+
+// Adding event listener to the button
+displayLogBtn.addEventListener('click', () => {
+  // Loop through each item in the console log and add it to an array
+  for (let i = 0; i < consoleLog.length; i++) {
+    const logItem = document.createElement('div');
+    logItem.textContent = consoleLog[i];
+    document.body.appendChild(logItem);
+  }
+});
+
+// Modify the existing event listeners to push the logs to the consoleLog array instead of logging them to the console
+fontStyleSelect.addEventListener('change', () => {
+  consoleLog.push(`User changed font style to ${fontStyleSelect.value}`);
+});
+
+backgroundColorPicker.addEventListener('change', () => {
+  consoleLog.push(`User changed background color to ${backgroundColorPicker.value}`);
+});
+
+decreaseImageSizeBtn.addEventListener('click', () => {
+  imageSizeInput.value = parseInt(imageSizeInput.value) - 1;
+  consoleLog.push(`User decreased image size to ${imageSizeInput.value}`);
+});
+
+increaseImageSizeBtn.addEventListener('click', () => {
+  imageSizeInput.value = parseInt(imageSizeInput.value) + 1;
+  consoleLog.push(`User increased image size to ${imageSizeInput.value}`);
+});
+
+timerStyleSelect.addEventListener('change', () => {
+  consoleLog.push(`User changed timer style to ${timerStyleSelect.value}`);
+});
+
+decreaseFontSizeBtn.addEventListener('click', () => {
+  fontSizeInput.value = parseInt(fontSizeInput.value) - 2;
+  consoleLog.push(`User decreased font size to ${fontSizeInput.value}`);
+});
+
+increaseFontSizeBtn.addEventListener('click', () => {
+  fontSizeInput.value = parseInt(fontSizeInput.value) + 2;
+  consoleLog.push(`User increased font size to ${fontSizeInput.value}`);
+});
+
+imagePositionSelect.addEventListener('change', () => {
+  consoleLog.push(`User changed image position to ${imagePositionSelect.value}`);
+});
+
+decreaseTimerSizeBtn.addEventListener('click', () => {
+  timerSizeInput.value = parseInt(timerSizeInput.value) - 1;
+  consoleLog.push(`User decreased timer size to ${timerSizeInput.value}`);
+});
+
+increaseTimerSizeBtn.addEventListener('click', () => {
+  timerSizeInput.value = parseInt(timerSizeInput.value) + 1;
+  consoleLog.push(`User increased timer size to ${timerSizeInput.value}`);
+});
+
+fontColorPicker.addEventListener('change', () => {
+  consoleLog.push(`User changed font color to ${fontColorPicker.value}`);
+});
+
+timerColorPicker.addEventListener('change', () => {
+  consoleLog.push(`User changed timer color to ${timerColorPicker.value}`);
+});
+
+resetButton.addEventListener('click', () => {
+  consoleLog.push('User clicked reset button');
+});
+
+    </script>
     <script src="scripts/section0.js"> </script>
 </body>
 
