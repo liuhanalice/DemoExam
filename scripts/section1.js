@@ -213,4 +213,73 @@ $(document).ready(function() {
       
     });
 
+    const questions=[
+      {
+        question: "A certain pet store sells only dogs and cats. In March, the store sold twice as many dogs as cats. In April, the store sold twice the number of dogs that it sold in March, and three times the number of cats that it sold in March. If the total number of pets the store sold in March and April combined was 500, how many dogs did the store sell in March?",
+        options: ["80","100","120","160","180"]
+      },
+      {
+        question: "The average (arithmetic mean) high temperature for x days is 70 degrees. The addition of one day with a high temperature of 75 degrees increases the average to 71 degrees. Quantity A: x; Quantity B: 5.",
+        options: ["Quantity A is greater.", "Quantity B is greater.", "The two quantities are equal.", "The relationship cannot be determined from the information given."]
+      },
+      {
+        question: " Upon visiting the Middle East in 1850, Gustave Flaubert was so _______ belly dancing that he wrote, in a letter to his mother, that the dancers alone made his trip worthwhile.",
+        options: ["overwhelmed by", "enamored by", "taken aback by", "beseeched by", "flustered by"]
+      },
+    ]
+
+  let currentQuestionIndex = 0;
+  const userAnswers = {};
+  const $questionText = $('#question-text');
+  const $optionsForm = $('#options-form');
+
+  function updateQuestion() {
+    $('#question-number').text((currentQuestionIndex + 1).toString());
+    const currentQuestion = questions[currentQuestionIndex];
+    $questionText.text(currentQuestion.question);
+    $optionsForm.empty();
+    $.each(currentQuestion.options, function(index, option) {
+      const $option = $(`
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="option" id="option-${index}" value="${option}">
+          <label class="form-check-label" for="option-${index}">
+            ${option}
+          </label>
+        </div>
+      `);
+      if (userAnswers[currentQuestionIndex] === option) {
+        $option.find('input').prop('checked', true);
+      }
+      $optionsForm.append($option);
+    });
+  }
+
+  $('#back-button').on('click', function(){
+    const selectedOption = $('input[name="option"]:checked').val();
+    userAnswers[currentQuestionIndex] = selectedOption;
+    if (currentQuestionIndex > 0) {
+      currentQuestionIndex--;
+      updateQuestion();
+    }
+  });
+
+  $('#next-button').on('click', function() {
+    const selectedOption = $('input[name="option"]:checked').val();
+    userAnswers[currentQuestionIndex] = selectedOption;
+    if (currentQuestionIndex < questions.length - 1) {
+      currentQuestionIndex++;
+      updateQuestion();
+    }
+  });
+
+  $('#submit-button').on('click', function(){
+    const selectedOption = $('input[name="option"]:checked').val();
+    userAnswers[currentQuestionIndex] = selectedOption;
+    $('#back-button').prop('disabled', true);
+    $('#next-button').prop('disabled', true);
+    $('#submit-button').prop('disabled', true);
+    localStorage.setItem("sec1-ans", JSON.stringify(userAnswers));
+    // to retrieve: const sec1Ans = localStorage.getItem('sec1-ans'); JSON.parse(sec1Ans) to get the dictionary
+  });
+
 });
