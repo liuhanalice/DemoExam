@@ -255,7 +255,19 @@ $(document).ready(function() {
       consoleLog.push(`[${formatedTime}], Section-0, User changed timer color to ${$(this).val()}`);
     });
 
-  //TODO: set timer count up / count down
+  // Change timer style (here only log change activities, function write in timer.js)
+  $("#timer-style-btn").on('click', function() {
+    const currentTime = new Date().getTime();
+    const relativeTimestamp = currentTime - initialTime;
+    const formatedTime = formatTime(relativeTimestamp);
+    var textLog;
+    if($(this).text() == "Count Up"){
+      textLog = "Count Down";
+    } else{
+      textLog = "Count Up";
+    }
+    consoleLog.push(`[${formatedTime}], Section-0, User changed timer style to ${textLog}`);
+  });
 
 
   // Reset
@@ -286,6 +298,7 @@ $(document).ready(function() {
       $("#question-content").css("font-size", "16px");
       $("#font-size-input").val(16);
       // TODO: reset timer style
+  
       
       const currentTime = new Date().getTime();
       const relativeTimestamp = currentTime - initialTime;
