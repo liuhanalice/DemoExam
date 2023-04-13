@@ -1,5 +1,7 @@
 
 $(document).ready(function() {
+  let initialTime = new Date().getTime();
+
   // Collapse or expnd the setting panel
     $("#panelToggle").click(function() {
       if ($(this).hasClass("collapsed")) {
@@ -11,96 +13,150 @@ $(document).ready(function() {
 
   // Decrease font size
     $("#decrease-font-size").on("click", function() {
-        var currentFontSize = parseInt($("#font-size-input").val());
-        if (currentFontSize > 1) {
-            $("#font-size-input").val(currentFontSize - 1);
-            $("#question-content").css("font-size", currentFontSize - 1 + "px");
-        }
+      var currentFontSize = parseInt($("#font-size-input").val());
+      const currentTime = new Date().getTime();
+      const relativeTimestamp = currentTime - initialTime;
+      const formatedTime = formatTime(relativeTimestamp);
+      if (currentFontSize > 1) {
+        $("#font-size-input").val(currentFontSize - 1);
+        $("#question-content").css("font-size", currentFontSize - 1 + "px");
+        consoleLog.push(`[${formatedTime}], Section-0, User decreased font size to ${$("#font-size-input").val()}`);
+      } else{
+        consoleLog.push(`[${formatedTime}], Section-0, User tried to decrease font size below minimum`);
+      }
+     
     });
 
   // Increase font size
     $("#increase-font-size").on("click", function() {
-        var currentFontSize = parseInt($("#font-size-input").val());
-        if(currentFontSize <=30){
-          $("#font-size-input").val(currentFontSize + 1);
-          $("#question-content").css("font-size", currentFontSize + 1 + "px");
-        } else{
-          $("#font-size-input").val(16);
-          $("#question-content").css("font-size", 16 + "px");
-        }
+      var currentFontSize = parseInt($("#font-size-input").val());
+      const currentTime = new Date().getTime();
+      const relativeTimestamp = currentTime - initialTime;
+      const formatedTime = formatTime(relativeTimestamp);
+      if(currentFontSize <30){
+        $("#font-size-input").val(currentFontSize + 1);
+        $("#question-content").css("font-size", currentFontSize + 1 + "px");
+        consoleLog.push(`[${formatedTime}], Section-0, User increased font size to ${$("#font-size-input").val()}`);
+      } else{
+        consoleLog.push(`[${formatedTime}], Section-0, User tried to increase font size over maximum`);
+      }
+      
     });
 
   // Change font size
     $("#font-size-input").change(function() {
       var currentFontSize = parseInt($(this).val());
+      const currentTime = new Date().getTime();
+      const relativeTimestamp = currentTime - initialTime;
+      const formatedTime = formatTime(relativeTimestamp);
       if (currentFontSize >= 1 && currentFontSize <= 30) {
-        $("#question-content").css("font-size", currentFontSize);
+        $("#question-content").css("font-size", currentFontSize); 
+        consoleLog.push(`[${formatedTime}], Section-0, User changed font size to ${$(this).val()}`);
+      } else{
+        consoleLog.push(`[${formatedTime}], Section-0, User tried to change font size to an invalid value`);
       }
+     
     });
 
   // Decrease timer size
     $("#decrease-timer-size").on("click", function (){
       var currentTimerSize = parseInt($("#timer-size-input").val());
+      const currentTime = new Date().getTime();
+      const relativeTimestamp = currentTime - initialTime;
+      const formatedTime = formatTime(relativeTimestamp);
       if(currentTimerSize > 10){
         currentTimerSize -= 10;
         $("#timer-size-input").val(currentTimerSize + '%');
         $("#Timer").css('font-size',  20+(currentTimerSize-100)/10);
+        consoleLog.push(`[${formatedTime}], Section-0, User decreased timer size to ${$("#timer-size-input").val()}`);
+      } else{
+        consoleLog.push(`[${formatedTime}], Section-0, User tried to decrease timer size below minimum`);
       }
+      
     });
 
   // Increase timer size
     $("#increase-timer-size").on("click", function (){
       var currentTimerSize = parseInt($("#timer-size-input").val());
+      const currentTime = new Date().getTime();
+      const relativeTimestamp = currentTime - initialTime;
+      const formatedTime = formatTime(relativeTimestamp);
       if(currentTimerSize < 500){
         currentTimerSize += 10;
         $("#timer-size-input").val(currentTimerSize + '%');
         $("#Timer").css('font-size',  20+(currentTimerSize - 100)/10);
+        consoleLog.push(`[${formatedTime}], Section-0, User increased timer size to ${$("#timer-size-input").val()}`);
+      } else{
+        consoleLog.push(`[${formatedTime}], Section-0, User tried to increase timer size over maximum`);
       }
     });
 
   // Change timer size
     $("#timer-size-input").change(function() {
       var currentTimerSize = parseInt($(this).val());
+      const currentTime = new Date().getTime();
+      const relativeTimestamp = currentTime - initialTime;
+      const formatedTime = formatTime(relativeTimestamp);
       if (currentTimerSize >= 10 && currentTimerSize <= 500) {
         $("#timer-size-input").val(currentTimerSize + '%');
         $("#Timer").css('font-size',  20+(currentTimerSize-100)/10);
+        consoleLog.push(`[${formatedTime}], Section-0, User changed timer size to ${$(this).val()}`);
       } else{
         currentTimerSize = 100;
         $("#timer-size-input").val(currentTimerSize + '%');
         $("#Timer").css('font-size',  20);
+        consoleLog.push(`[${formatedTime}], Section-0, User tried to change timer size to an invalid value`);
       }
     });
   
   // Decrease img size
     $("#decrease-img-size").on("click", function() {
       var currentImgHeight = $("#sec0-qimg").height();
+      const currentTime = new Date().getTime();
+      const relativeTimestamp = currentTime - initialTime;
+      const formatedTime = formatTime(relativeTimestamp);
       if (currentImgHeight > 30)  {
         currentImgHeight -= 30;
         $("#image-size-input").val(currentImgHeight/3+ "%");
         $("#sec0-qimg").css("width", currentImgHeight/3 *4);
         $("#sec0-qimg").css("height", currentImgHeight);
+        consoleLog.push(`[${formatedTime}], Section-0, User decreased image size to ${$("#image-size-input").val()}`);
+      }
+      else{
+        consoleLog.push(`[${formatedTime}], Section-0, User tried to decrease image size below minimum`);
       }
     });
   
   // Increase img size
     $("#increase-img-size").on("click", function() {
       var currentImgHeight = $("#sec0-qimg").height();
+      const currentTime = new Date().getTime();
+      const relativeTimestamp = currentTime - initialTime;
+      const formatedTime = formatTime(relativeTimestamp);
       if (currentImgHeight < 600)  {
         currentImgHeight += 30;
         $("#image-size-input").val(currentImgHeight/3+ "%");
         $("#sec0-qimg").css("width", currentImgHeight/3 *4);
         $("#sec0-qimg").css("height", currentImgHeight);
+        consoleLog.push(`[${formatedTime}], Section-0, User increased image size to ${$("#image-size-input").val()}`);
+      } else{
+        consoleLog.push(`[${formatedTime}], Section-0, User tried to increase image size over maximum`);
       }
     });
 
   // Change img size
     $("#image-size-input").change(function() {
       var currentImgSize = parseInt($(this).val());
+      const currentTime = new Date().getTime();
+      const relativeTimestamp = currentTime - initialTime;
+      const formatedTime = formatTime(relativeTimestamp);
       if(currentImgSize >= 10 && currentImgSize <= 200){
         $("#image-size-input").val(currentImgSize + "%");
+        consoleLog.push(`[${formatedTime}], Section-0, User changed image size to ${$(this).val()}`);
       } else{
         currentImgSize = 100;
         $("#image-size-input").val(currentImgSize + "%");
+        consoleLog.push(`[${formatedTime}], Section-0, User tried to change image size to an invalid value`);
       }
       var imgHeight = 3 * currentImgSize;
       var imgWidth = 4 * currentImgSize;
@@ -146,6 +202,10 @@ $(document).ready(function() {
                 $("#question-content").css("font-family", "inherit");
                 break;
         }
+        const currentTime = new Date().getTime();
+        const relativeTimestamp = currentTime - initialTime;
+        const formatedTime = formatTime(relativeTimestamp);
+        consoleLog.push(`[${formatedTime}], Section-0, User changed font style to ${$('#font-style-select option:selected').text()}`);
     });
   
   // Change img position
@@ -159,24 +219,40 @@ $(document).ready(function() {
                 $('#img-col').insertAfter($("#question-col"));
                 break;
           }
+      const currentTime = new Date().getTime();
+      const relativeTimestamp = currentTime - initialTime;
+      const formatedTime = formatTime(relativeTimestamp);
+      consoleLog.push(`[${formatedTime}], Section-0, User changed image position to ${$("#img-pos-select option:selected").text()}`);
     });
 
   // Change bkg color
     $('#bkg-color-picker').on('change', function() {
       var selectedColor = $(this).val();
       $('body').css('background-color', selectedColor);
+      const currentTime = new Date().getTime();
+      const relativeTimestamp = currentTime - initialTime;
+      const formatedTime = formatTime(relativeTimestamp);
+      consoleLog.push(`[${formatedTime}], Section-0, User changed background color to ${$(this).val()}`);
     });
 
   // Change font color
    $('#font-color-picker').on('change', function() {
       var selectedColor = $(this).val();
       $('#question-content').css('color', selectedColor);
+      const currentTime = new Date().getTime();
+      const relativeTimestamp = currentTime - initialTime;
+      const formatedTime = formatTime(formatedTime);
+      consoleLog.push(`[${formatedTime}], Section-0, User changed font color to ${$(this).val()}`);
     });
   
   // Change timer color
    $('#timer-color-picker').on('change', function() {
       var selectedColor = $(this).val();
       $('#Timer').css('color', selectedColor);
+      const currentTime = new Date().getTime();
+      const relativeTimestamp = currentTime - initialTime;
+      const formatedTime = formatTime(relativeTimestamp);
+      consoleLog.push(`[${formatedTime}], Section-0, User changed timer color to ${$(this).val()}`);
     });
 
   //TODO: set timer count up / count down

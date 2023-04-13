@@ -284,100 +284,10 @@
     </div>
     </div>
     <button id="display-log-btn">Display Console Log</button>
-    <script>
-      // Selecting the relevant elements
-const fontStyleSelect = document.querySelector('#font-style-select');
-const backgroundColorPicker = document.querySelector('#bkg-color-picker');
-const imageSizeInput = document.querySelector('#image-size-input');
-const decreaseImageSizeBtn = document.querySelector('#decrease-img-size');
-const increaseImageSizeBtn = document.querySelector('#increase-img-size');
-const timerStyleSelect = document.querySelector('#timer-style-select');
-const fontSizeInput = document.querySelector('#font-size-input');
-const decreaseFontSizeBtn = document.querySelector('#decrease-font-size');
-const increaseFontSizeBtn = document.querySelector('#increase-font-size');
-const imagePositionSelect = document.querySelector('#img-pos-select');
-const timerSizeInput = document.querySelector('#timer-size-input');
-const decreaseTimerSizeBtn = document.querySelector('#decrease-timer-size');
-const increaseTimerSizeBtn = document.querySelector('#increase-timer-size');
-const fontColorPicker = document.querySelector('#font-color-picker');
-const timerColorPicker = document.querySelector('#timer-color-picker');
-const resetButton = document.querySelector('#ui-reset-btn');
 
-// Adding event listeners
-const displayLogBtn = document.querySelector('#display-log-btn');
-const consoleLog = [];
 
-// Adding event listener to the button
-displayLogBtn.addEventListener('click', () => {
-  // Loop through each item in the console log and add it to an array
-  for (let i = 0; i < consoleLog.length; i++) {
-    const logItem = document.createElement('div');
-    logItem.textContent = consoleLog[i];
-    document.body.appendChild(logItem);
-  }
-});
-
-// Modify the existing event listeners to push the logs to the consoleLog array instead of logging them to the console
-fontStyleSelect.addEventListener('change', () => {
-  consoleLog.push(`User changed font style to ${fontStyleSelect.value}`);
-});
-
-backgroundColorPicker.addEventListener('change', () => {
-  consoleLog.push(`User changed background color to ${backgroundColorPicker.value}`);
-});
-
-decreaseImageSizeBtn.addEventListener('click', () => {
-  imageSizeInput.value = parseInt(imageSizeInput.value) - 1;
-  consoleLog.push(`User decreased image size to ${imageSizeInput.value}`);
-});
-
-increaseImageSizeBtn.addEventListener('click', () => {
-  imageSizeInput.value = parseInt(imageSizeInput.value) + 1;
-  consoleLog.push(`User increased image size to ${imageSizeInput.value}`);
-});
-
-timerStyleSelect.addEventListener('change', () => {
-  consoleLog.push(`User changed timer style to ${timerStyleSelect.value}`);
-});
-
-decreaseFontSizeBtn.addEventListener('click', () => {
-  fontSizeInput.value = parseInt(fontSizeInput.value) - 2;
-  consoleLog.push(`User decreased font size to ${fontSizeInput.value}`);
-});
-
-increaseFontSizeBtn.addEventListener('click', () => {
-  fontSizeInput.value = parseInt(fontSizeInput.value) + 2;
-  consoleLog.push(`User increased font size to ${fontSizeInput.value}`);
-});
-
-imagePositionSelect.addEventListener('change', () => {
-  consoleLog.push(`User changed image position to ${imagePositionSelect.value}`);
-});
-
-decreaseTimerSizeBtn.addEventListener('click', () => {
-  timerSizeInput.value = parseInt(timerSizeInput.value) - 1;
-  consoleLog.push(`User decreased timer size to ${timerSizeInput.value}`);
-});
-
-increaseTimerSizeBtn.addEventListener('click', () => {
-  timerSizeInput.value = parseInt(timerSizeInput.value) + 1;
-  consoleLog.push(`User increased timer size to ${timerSizeInput.value}`);
-});
-
-fontColorPicker.addEventListener('change', () => {
-  consoleLog.push(`User changed font color to ${fontColorPicker.value}`);
-});
-
-timerColorPicker.addEventListener('change', () => {
-  consoleLog.push(`User changed timer color to ${timerColorPicker.value}`);
-});
-
-resetButton.addEventListener('click', () => {
-  consoleLog.push('User clicked reset button');
-});
-
-    </script>
     <script src="scripts/section0.js"> </script>
+    <script src="scripts/log.js"></script>
 </body>
 
 
