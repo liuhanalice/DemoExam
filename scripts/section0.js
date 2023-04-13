@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-  let initialTime = new Date().getTime();
+  initialTime = new Date().getTime();
 
   // Collapse or expnd the setting panel
     $("#panelToggle").click(function() {
@@ -287,6 +287,21 @@ $(document).ready(function() {
       $("#font-size-input").val(16);
       // TODO: reset timer style
       
+      const currentTime = new Date().getTime();
+      const relativeTimestamp = currentTime - initialTime;
+      const formatedTime = formatTime(relativeTimestamp);
+      consoleLog.push(`[${formatedTime}], Section-0, User reset UI to default`);
+    });
+
+    $("#start-btn").on("click", function(){
+      localStorage.setItem("fontSize", $("#font-size-input").val());
+      localStorage.setItem("timerSize", $("#timer-size-input").val());
+      localStorage.setItem("imageSize", $("#image-size-input").val());
+      localStorage.setItem("fontStyle", $("#font-style-select").val());
+      localStorage.setItem("imagePos", $("#img-pos-select").val());
+      localStorage.setItem("bkgColor", $("#bkg-color-picker").val());
+      localStorage.setItem("fontColor", $("#font-color-picker").val());
+      localStorage.setItem("timerColor", $("#timer-color-picker").val());
     });
 
 });
