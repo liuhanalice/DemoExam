@@ -20,9 +20,9 @@ $(document).ready(function() {
       if (currentFontSize > 1) {
         $("#font-size-input").val(currentFontSize - 1);
         $("#question-content").css("font-size", currentFontSize - 1 + "px");
-        consoleLog.push(`[${formatedTime}], Section-0, User decreased font size to ${$("#font-size-input").val()}`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User decreased font size to ${$("#font-size-input").val()}`);
       } else{
-        consoleLog.push(`[${formatedTime}], Section-0, User tried to decrease font size below minimum`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User tried to decrease font size below minimum`);
       }
      
     });
@@ -36,9 +36,9 @@ $(document).ready(function() {
       if(currentFontSize <30){
         $("#font-size-input").val(currentFontSize + 1);
         $("#question-content").css("font-size", currentFontSize + 1 + "px");
-        consoleLog.push(`[${formatedTime}], Section-0, User increased font size to ${$("#font-size-input").val()}`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User increased font size to ${$("#font-size-input").val()}`);
       } else{
-        consoleLog.push(`[${formatedTime}], Section-0, User tried to increase font size over maximum`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User tried to increase font size over maximum`);
       }
       
     });
@@ -51,9 +51,9 @@ $(document).ready(function() {
       const formatedTime = formatTime(relativeTimestamp);
       if (currentFontSize >= 1 && currentFontSize <= 30) {
         $("#question-content").css("font-size", currentFontSize); 
-        consoleLog.push(`[${formatedTime}], Section-0, User changed font size to ${$(this).val()}`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User changed font size to ${$(this).val()}`);
       } else{
-        consoleLog.push(`[${formatedTime}], Section-0, User tried to change font size to an invalid value`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User tried to change font size to an invalid value`);
       }
      
     });
@@ -68,9 +68,9 @@ $(document).ready(function() {
         currentTimerSize -= 10;
         $("#timer-size-input").val(currentTimerSize + '%');
         $("#Timer").css('font-size',  20+(currentTimerSize-100)/10);
-        consoleLog.push(`[${formatedTime}], Section-0, User decreased timer size to ${$("#timer-size-input").val()}`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User decreased timer size to ${$("#timer-size-input").val()}`);
       } else{
-        consoleLog.push(`[${formatedTime}], Section-0, User tried to decrease timer size below minimum`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User tried to decrease timer size below minimum`);
       }
       
     });
@@ -85,9 +85,9 @@ $(document).ready(function() {
         currentTimerSize += 10;
         $("#timer-size-input").val(currentTimerSize + '%');
         $("#Timer").css('font-size',  20+(currentTimerSize - 100)/10);
-        consoleLog.push(`[${formatedTime}], Section-0, User increased timer size to ${$("#timer-size-input").val()}`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User increased timer size to ${$("#timer-size-input").val()}`);
       } else{
-        consoleLog.push(`[${formatedTime}], Section-0, User tried to increase timer size over maximum`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User tried to increase timer size over maximum`);
       }
     });
 
@@ -100,12 +100,12 @@ $(document).ready(function() {
       if (currentTimerSize >= 10 && currentTimerSize <= 500) {
         $("#timer-size-input").val(currentTimerSize + '%');
         $("#Timer").css('font-size',  20+(currentTimerSize-100)/10);
-        consoleLog.push(`[${formatedTime}], Section-0, User changed timer size to ${$(this).val()}`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User changed timer size to ${$(this).val()}`);
       } else{
         currentTimerSize = 100;
         $("#timer-size-input").val(currentTimerSize + '%');
         $("#Timer").css('font-size',  20);
-        consoleLog.push(`[${formatedTime}], Section-0, User tried to change timer size to an invalid value`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User tried to change timer size to an invalid value`);
       }
     });
   
@@ -120,10 +120,10 @@ $(document).ready(function() {
         $("#image-size-input").val(currentImgHeight/3+ "%");
         $("#sec0-qimg").css("width", currentImgHeight/3 *4);
         $("#sec0-qimg").css("height", currentImgHeight);
-        consoleLog.push(`[${formatedTime}], Section-0, User decreased image size to ${$("#image-size-input").val()}`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User decreased image size to ${$("#image-size-input").val()}`);
       }
       else{
-        consoleLog.push(`[${formatedTime}], Section-0, User tried to decrease image size below minimum`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User tried to decrease image size below minimum`);
       }
     });
   
@@ -138,9 +138,9 @@ $(document).ready(function() {
         $("#image-size-input").val(currentImgHeight/3+ "%");
         $("#sec0-qimg").css("width", currentImgHeight/3 *4);
         $("#sec0-qimg").css("height", currentImgHeight);
-        consoleLog.push(`[${formatedTime}], Section-0, User increased image size to ${$("#image-size-input").val()}`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User increased image size to ${$("#image-size-input").val()}`);
       } else{
-        consoleLog.push(`[${formatedTime}], Section-0, User tried to increase image size over maximum`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User tried to increase image size over maximum`);
       }
     });
 
@@ -152,11 +152,11 @@ $(document).ready(function() {
       const formatedTime = formatTime(relativeTimestamp);
       if(currentImgSize >= 10 && currentImgSize <= 200){
         $("#image-size-input").val(currentImgSize + "%");
-        consoleLog.push(`[${formatedTime}], Section-0, User changed image size to ${$(this).val()}`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User changed image size to ${$(this).val()}`);
       } else{
         currentImgSize = 100;
         $("#image-size-input").val(currentImgSize + "%");
-        consoleLog.push(`[${formatedTime}], Section-0, User tried to change image size to an invalid value`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User tried to change image size to an invalid value`);
       }
       var imgHeight = 3 * currentImgSize;
       var imgWidth = 4 * currentImgSize;
@@ -205,7 +205,7 @@ $(document).ready(function() {
         const currentTime = new Date().getTime();
         const relativeTimestamp = currentTime - initialTime;
         const formatedTime = formatTime(relativeTimestamp);
-        consoleLog.push(`[${formatedTime}], Section-0, User changed font style to ${$('#font-style-select option:selected').text()}`);
+        consoleLog.push(`[${formatedTime}], Pre-Section-1, User changed font style to ${$('#font-style-select option:selected').text()}`);
     });
   
   // Change img position
@@ -222,7 +222,7 @@ $(document).ready(function() {
       const currentTime = new Date().getTime();
       const relativeTimestamp = currentTime - initialTime;
       const formatedTime = formatTime(relativeTimestamp);
-      consoleLog.push(`[${formatedTime}], Section-0, User changed image position to ${$("#img-pos-select option:selected").text()}`);
+      consoleLog.push(`[${formatedTime}], Pre-Section-1, User changed image position to ${$("#img-pos-select option:selected").text()}`);
     });
 
   // Change bkg color
@@ -232,7 +232,7 @@ $(document).ready(function() {
       const currentTime = new Date().getTime();
       const relativeTimestamp = currentTime - initialTime;
       const formatedTime = formatTime(relativeTimestamp);
-      consoleLog.push(`[${formatedTime}], Section-0, User changed background color to ${$(this).val()}`);
+      consoleLog.push(`[${formatedTime}], Pre-Section-1, User changed background color to ${$(this).val()}`);
     });
 
   // Change font color
@@ -242,7 +242,7 @@ $(document).ready(function() {
       const currentTime = new Date().getTime();
       const relativeTimestamp = currentTime - initialTime;
       const formatedTime = formatTime(formatedTime);
-      consoleLog.push(`[${formatedTime}], Section-0, User changed font color to ${$(this).val()}`);
+      consoleLog.push(`[${formatedTime}], Pre-Section-1, User changed font color to ${$(this).val()}`);
     });
   
   // Change timer color
@@ -252,11 +252,11 @@ $(document).ready(function() {
       const currentTime = new Date().getTime();
       const relativeTimestamp = currentTime - initialTime;
       const formatedTime = formatTime(relativeTimestamp);
-      consoleLog.push(`[${formatedTime}], Section-0, User changed timer color to ${$(this).val()}`);
+      consoleLog.push(`[${formatedTime}], Pre-Section-1, User changed timer color to ${$(this).val()}`);
     });
 
   // Change timer style (here only log change activities, function write in timer.js)
-  $("#timer-style-btn").on('click', function() {
+$("#timer-style-btn").on('click', function() {
     const currentTime = new Date().getTime();
     const relativeTimestamp = currentTime - initialTime;
     const formatedTime = formatTime(relativeTimestamp);
@@ -305,10 +305,10 @@ $(document).ready(function() {
       const currentTime = new Date().getTime();
       const relativeTimestamp = currentTime - initialTime;
       const formatedTime = formatTime(relativeTimestamp);
-      consoleLog.push(`[${formatedTime}], Section-0, User reset UI to default`);
+      consoleLog.push(`[${formatedTime}], Pre-Section-1, User reset UI to default`);
     });
 
-    $("#start-btn").on("click", function(){
+    $("#section-start-btn").on("click", function(){
       localStorage.setItem("fontSize", $("#font-size-input").val());
       localStorage.setItem("timerSize", $("#timer-size-input").val());
       localStorage.setItem("imageSize", $("#image-size-input").val());
@@ -317,6 +317,7 @@ $(document).ready(function() {
       localStorage.setItem("bkgColor", $("#bkg-color-picker").val());
       localStorage.setItem("fontColor", $("#font-color-picker").val());
       localStorage.setItem("timerColor", $("#timer-color-picker").val());
+      window.location.href="section1.html";
     });
 
 });

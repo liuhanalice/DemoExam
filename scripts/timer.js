@@ -62,12 +62,12 @@ $(document).ready(function () {
     }
 
     $('#toggleTimerBtn').click(function () { // Hide Time Button
-        if (countDownE.css('display') !== 'none') {
-            countDownE.hide();
+        if (timerItem.css('display') !== 'none') {
+            timerItem.hide();
             $(this).text('Display Time');
             $('#timer-style-btn').hide(); 
         } else {
-            countDownE.show();
+            timerItem.show();
             $(this).text('Hide Time');
             $('#timer-style-btn').show(); 
         }
@@ -75,10 +75,8 @@ $(document).ready(function () {
 
     $('#timer-style-btn').click(function () {
         if (!isCountUp) {
-            $(this).text('Count Down');
             isCountUp = true;
         } else {
-            $(this).text('Count Up');
             isCountUp = false;
         }
     });

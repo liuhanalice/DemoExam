@@ -2,13 +2,15 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
+   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"> </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 
 </head>
@@ -38,46 +40,6 @@
                 <button id="toggleTimerBtn" class="btn btn-sm btn-outline-primary me-2">Hide Time</button>
                 <span id="Timer" class="navbar-text me-2"></span>
               </div>
-              
-              <script>
-                const startTime = 1;
-                let time = startTime * 100; 
-                const countDownE = document.getElementById('Timer');
-                let countdownInterval = setInterval(update, 1000);
-                let onem_alert = 0;
-              
-                function update() {
-                  const min = Math.floor(time / 60);
-                  let second = time % 60;
-                  if (second < 10) {
-                    second = '0' + second;
-                  }
-                  countDownE.innerHTML = `${min}:${second}`;
-              
-                  if (time == 0) {
-                    clearInterval(countdownInterval);
-                    alert("Time's up!");
-                  } else {
-                    time -= 1;
-              
-                    if (time < 60 && onem_alert == 0) {
-                      alert("The test is about to close soon!");
-                      onem_alert = 1;
-                    }
-                  }
-                }
-              
-                const toggleTimerBtn = document.getElementById('toggleTimerBtn');
-                toggleTimerBtn.addEventListener('click', () => {
-                  if (countDownE.style.display !== 'none') {
-                    countDownE.style.display = 'none';
-                    toggleTimerBtn.textContent = 'Display Time';
-                  } else {
-                    countDownE.style.display = 'inline-block';
-                    toggleTimerBtn.textContent = 'Hide Time';
-                  }
-                });
-              </script>
         </div>
     </nav>
     <nav class="navbar navbar-light bg-light">
@@ -187,14 +149,11 @@
                                 <button class="btn btn-sm btn-outline-secondary" type="button" id="increase-img-size" disabled>+</button>
                             </div>
                         </div>
-                        <div class="col-md-3"> 
-                            <label for="timer-style-select">Timer Style </label>
-                            <select class="form-select-sm" id="timer-style-select" aria-label="Select Timer Style">
-                                <option selected value="default">Count Down</option>
-                                <option value="1">Count Up</option>
-                                </select>
+                            <div class="col-md-3"> 
+                                <label for="timer-style-select">Timer Style </label>
+                                <button id="timer-style-btn" class="btn btn-sm btn-outline-secondary me-2">Count Up</button>
+                            </div>
                         </div>
-                    </div>
 
                     <div class="row mt-2">
                         <div class="col-md-3"> 
@@ -242,6 +201,10 @@
     </div>
     </div>
 
+    <button id="display-log-btn">Display Console Log</button>
+    
+    <script src="scripts/log.js"></script>
+    <script src="scripts/timer.js"></script>
     <script src="scripts/section1.js"> </script>
 </body>
 
