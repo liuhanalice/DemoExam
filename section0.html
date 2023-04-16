@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="styles.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"> </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 </head>
 
@@ -35,98 +37,16 @@
             <div class="d-flex align-items-center">
 
               <button id="toggleTimerBtn" class="btn btn-sm btn-outline-primary me-2">Hide Time</button>
-              <button id="countUpBtn" class="btn btn-sm btn-outline-primary me-2">Count Up</button>
-              <span id="Timer" class="navbar-text me-2"></span>
+             
+              <span id="Timer" class="navbar-text me-2">00:00</span>
             </div>
           
-            <script>
-              const totalTime = 1 * 100;
-              let time = totalTime;
-              const countDownE = document.getElementById('Timer');
-              let countdownInterval = setInterval(updateCountdown, 1000);
-              let onem_alert = 0;
-              let isCountUp = false;
-              let remainingTime = 0;
-          
-              function updateCountdown() {
-                const min = Math.floor(time / 60);
-                let second = time % 60;
-                if (second < 10) {
-                  second = '0' + second;
-                }
-                countDownE.innerHTML = `${min}:${second}`;
-          
-                if (time == 0) {
-                  clearInterval(countdownInterval);
-                  alert("Time's up!");
-                } else {
-                  time -= 1;
-          
-                  if (time < 60 && onem_alert == 0) {
-                    alert("The test is about to close soon!");
-                    onem_alert = 1;
-                  }
-                }
-              }
-          
-              function startCountUp(remainingTime) {
-                clearInterval(countdownInterval);
-                countDownE.innerHTML = '';
-          
-                let countUpTime = totalTime - remainingTime;
-                let countUpInterval = setInterval(() => {
-                  const min = Math.floor(countUpTime / 60);
-                  let second = countUpTime % 60;
-                  if (second < 10) {
-                    second = '0' + second;
-                  }
-                  countDownE.innerHTML = `${min}:${second}`;
-          
-                  if (countUpTime > totalTime) {
-                    clearInterval(countUpInterval);
-                    alert("Time's up!");
-                  } else {
-                    countUpTime += 1;
-                  }
-                }, 1000);
-              }
-          
-              const toggleTimerBtn = document.getElementById('toggleTimerBtn');
-              toggleTimerBtn.addEventListener('click', () => {
-                if (countDownE.style.display !== 'none') {
-                  countDownE.style.display = 'none';
-                  toggleTimerBtn.textContent = 'Display Time';
-                  countUpBtn.style.display = 'none'; // hide count up/down button
-                } else {
-                  countDownE.style.display = 'inline-block';
-                  toggleTimerBtn.textContent = 'Hide Time';
-                  countUpBtn.style.display = 'inline-block'; // show count up/down button
-                }
-              });
-          
-              const countUpBtn = document.getElementById('countUpBtn');
-              countUpBtn.addEventListener('click', () => {
-                if (!isCountUp) {
-                  clearInterval(countdownInterval);
-                  remainingTime = time;
-                  startCountUp(remainingTime);
-                  countUpBtn.textContent = 'Count Down';
-                  isCountUp = true;
-                } else {
-                  clearInterval(countdownInterval);
-                  countdownInterval = setInterval(updateCountdown, 1000);
-                  countUpBtn.textContent = 'Count Up';
-                  isCountUp = false;
-                }
-              });
-              
-            </script>
-          </div>
+        </div>
     </nav>
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <div class="mx-auto text-center">
-                <span class="navbar-text d-block"><b>Question 0 of 3</b></span>
+                <span class="navbar-text d-block"><b>Question 0 of 0</b></span>
             </div>
         </div>
     </nav>
@@ -176,7 +96,7 @@
     <!-- start button -->
     <div class="container">
     <div class="custom-bigmt text-center">
-        <a href=section1.html class="btn btn-lg btn-outline-primary">START</a>
+        <a href=pre-section1.html class="btn btn-lg btn-outline-primary" id="start-btn">START</a>
     </div>
     </div>
 
@@ -231,10 +151,7 @@
                         </div>
                         <div class="col-md-3"> 
                             <label for="timer-style-select">Timer Style </label>
-                            <select class="form-select-sm" id="timer-style-select" aria-label="Select Timer Style">
-                                <option selected value="default">Count Down</option>
-                                <option value="1">Count Up</option>
-                                </select>
+                            <button id="timer-style-btn" class="btn btn-sm btn-outline-secondary me-2">Count Up</button>
                         </div>
                     </div>
 
@@ -283,101 +200,13 @@
         </div>
     </div>
     </div>
-    <button id="display-log-btn">Display Console Log</button>
-    <script>
-      // Selecting the relevant elements
-const fontStyleSelect = document.querySelector('#font-style-select');
-const backgroundColorPicker = document.querySelector('#bkg-color-picker');
-const imageSizeInput = document.querySelector('#image-size-input');
-const decreaseImageSizeBtn = document.querySelector('#decrease-img-size');
-const increaseImageSizeBtn = document.querySelector('#increase-img-size');
-const timerStyleSelect = document.querySelector('#timer-style-select');
-const fontSizeInput = document.querySelector('#font-size-input');
-const decreaseFontSizeBtn = document.querySelector('#decrease-font-size');
-const increaseFontSizeBtn = document.querySelector('#increase-font-size');
-const imagePositionSelect = document.querySelector('#img-pos-select');
-const timerSizeInput = document.querySelector('#timer-size-input');
-const decreaseTimerSizeBtn = document.querySelector('#decrease-timer-size');
-const increaseTimerSizeBtn = document.querySelector('#increase-timer-size');
-const fontColorPicker = document.querySelector('#font-color-picker');
-const timerColorPicker = document.querySelector('#timer-color-picker');
-const resetButton = document.querySelector('#ui-reset-btn');
+    <!-- <button id="display-log-btn">Display Console Log</button> -->
 
-// Adding event listeners
-const displayLogBtn = document.querySelector('#display-log-btn');
-const consoleLog = [];
-
-// Adding event listener to the button
-displayLogBtn.addEventListener('click', () => {
-  // Loop through each item in the console log and add it to an array
-  for (let i = 0; i < consoleLog.length; i++) {
-    const logItem = document.createElement('div');
-    logItem.textContent = consoleLog[i];
-    document.body.appendChild(logItem);
-  }
-});
-
-// Modify the existing event listeners to push the logs to the consoleLog array instead of logging them to the console
-fontStyleSelect.addEventListener('change', () => {
-  consoleLog.push(`User changed font style to ${fontStyleSelect.value}`);
-});
-
-backgroundColorPicker.addEventListener('change', () => {
-  consoleLog.push(`User changed background color to ${backgroundColorPicker.value}`);
-});
-
-decreaseImageSizeBtn.addEventListener('click', () => {
-  imageSizeInput.value = parseInt(imageSizeInput.value) - 1;
-  consoleLog.push(`User decreased image size to ${imageSizeInput.value}`);
-});
-
-increaseImageSizeBtn.addEventListener('click', () => {
-  imageSizeInput.value = parseInt(imageSizeInput.value) + 1;
-  consoleLog.push(`User increased image size to ${imageSizeInput.value}`);
-});
-
-timerStyleSelect.addEventListener('change', () => {
-  consoleLog.push(`User changed timer style to ${timerStyleSelect.value}`);
-});
-
-decreaseFontSizeBtn.addEventListener('click', () => {
-  fontSizeInput.value = parseInt(fontSizeInput.value) - 2;
-  consoleLog.push(`User decreased font size to ${fontSizeInput.value}`);
-});
-
-increaseFontSizeBtn.addEventListener('click', () => {
-  fontSizeInput.value = parseInt(fontSizeInput.value) + 2;
-  consoleLog.push(`User increased font size to ${fontSizeInput.value}`);
-});
-
-imagePositionSelect.addEventListener('change', () => {
-  consoleLog.push(`User changed image position to ${imagePositionSelect.value}`);
-});
-
-decreaseTimerSizeBtn.addEventListener('click', () => {
-  timerSizeInput.value = parseInt(timerSizeInput.value) - 1;
-  consoleLog.push(`User decreased timer size to ${timerSizeInput.value}`);
-});
-
-increaseTimerSizeBtn.addEventListener('click', () => {
-  timerSizeInput.value = parseInt(timerSizeInput.value) + 1;
-  consoleLog.push(`User increased timer size to ${timerSizeInput.value}`);
-});
-
-fontColorPicker.addEventListener('change', () => {
-  consoleLog.push(`User changed font color to ${fontColorPicker.value}`);
-});
-
-timerColorPicker.addEventListener('change', () => {
-  consoleLog.push(`User changed timer color to ${timerColorPicker.value}`);
-});
-
-resetButton.addEventListener('click', () => {
-  consoleLog.push('User clicked reset button');
-});
-
-    </script>
+    <script src="scripts/log.js"></script>
+    <!-- <script src="scripts/timer.js"></script> -->
     <script src="scripts/section0.js"> </script>
+
+
 </body>
 
 
