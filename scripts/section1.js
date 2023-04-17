@@ -3,7 +3,7 @@ $(document).ready(function() {
   
   initialTime = new Date().getTime();
 
-  // restore previous changes
+  //  --- restore previous changes --- //
     // font size
     var savedFontSize = parseInt(localStorage.getItem("fontSize"));
     $("#font-size-input").val(savedFontSize);
@@ -81,6 +81,7 @@ $(document).ready(function() {
     $('#timer-color-picker').val(savedTimerColor);
     $('#Timer').css('color', savedTimerColor);
 
+  // ---- //
 
   // Collapse or expnd the setting panel
     $("#panelToggle").click(function() {
