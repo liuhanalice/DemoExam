@@ -238,7 +238,7 @@ $(document).ready(function() {
   // Change font color
    $('#font-color-picker').on('change', function() {
       var selectedColor = $(this).val();
-      $('#question-content').css('color', selectedColor);
+      $('#question-content').css('font', selectedColor);
       const currentTime = new Date().getTime();
       const relativeTimestamp = currentTime - initialTime;
       const formatedTime = formatTime(formatedTime);

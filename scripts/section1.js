@@ -2,6 +2,86 @@
 $(document).ready(function() {
   
   initialTime = new Date().getTime();
+
+  // restore previous changes
+    // font size
+    var savedFontSize = parseInt(localStorage.getItem("fontSize"));
+    $("#font-size-input").val(savedFontSize);
+    $("#question-content").css("font-size", savedFontSize);
+    // timer size
+    var savedTimerSize = parseInt(localStorage.getItem("timerSize"));
+    $("#timer-size-input").val(savedTimerSize + '%');
+    $("#Timer").css('font-size',  20+(savedTimerSize-100)/10);
+    // image size
+    var savedImgSize = parseInt(localStorage.getItem("imageSize"));
+    $("#image-size-input").val(savedImgSize + "%");
+    $("#sec0-qimg").css("width", 4 * savedImgSize);
+    $("#sec0-qimg").css("height",  3 * savedImgSize);
+    // font style
+    var savedFontStyle = localStorage.getItem("fontStyle");
+    $("#font-style-select").val(parseInt(savedFontStyle));
+    switch (savedFontStyle) {
+            case "1":
+                $("#question-content").css("font-family", "Arial, sans-serif");
+                break;
+            case "2":
+                $("#question-content").css("font-family", "Georgia, serif");
+                break;
+            case "3":
+                $("#question-content").css("font-family", "Verdana, sans-serif");
+                break;
+            case "4":
+                $("#question-content").css("font-family", "Times New Roman");
+                break;
+            case "5":
+                $("#question-content").css("font-family", "fantasy");
+                break;
+            case "6":
+                $("#question-content").css("font-family", "cursive");
+                break;
+            case "7":
+                $("#question-content").css("font-family", "monospace");
+                break;
+            case "8":
+                $("#question-content").css("font-family", "Courier New");
+                break;
+            case "9":
+                $("#question-content").css("font-family", "Helvetica");
+                break;
+            case "10":
+                $("#question-content").css("font-family", "Lucida Console");
+                break;
+            default:
+                $("#question-content").css("font-family", "inherit");
+                break;
+        }
+    // imagePos
+    var savedImgPos = localStorage.getItem("imagePos");
+    $("#img-pos-select").val(parseInt(savedImgPos));
+    switch (savedImgPos) {
+              case "1":
+                $("#question-col").insertAfter($('#img-col'));
+                break;
+              default:
+                $('#img-col').insertAfter($("#question-col"));
+                break;
+    }
+    // bkg color
+    var savedBkgColor = localStorage.getItem("bkgColor");
+    $('#bkg-color-picker').val(savedBkgColor);
+    $('body').css('background-color', savedBkgColor);
+
+    // font color
+    var savedFontColor = localStorage.getItem("fontColor");
+    $('#font-color-picker').val(savedFontColor);
+    $('#question-content').css('color', savedFontColor);
+
+    // timer color
+    var savedTimerColor = localStorage.getItem("timerColor");
+    $('#timer-color-picker').val(savedTimerColor);
+    $('#Timer').css('color', savedTimerColor);
+
+
   // Collapse or expnd the setting panel
     $("#panelToggle").click(function() {
       if ($(this).hasClass("collapsed")) {
