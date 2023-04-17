@@ -22,11 +22,11 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <div class="navbar-nav me-auto">
-            <span class="navbar-text"><b>Pre Section 1</b></span>
+            <span class="navbar-text"><b>Section 2</b></span>
             </div>
             <div class="navbar-nav ms-auto">
                 <div>
-                    <button class="btn btn-outline-primary qbutton" id="section-start-btn">Start</br>Section</button>
+                    <a href=pre-section3.html class="btn btn-lg btn-outline-primary" id="start-btn">Next Section</a>
                     <button class="btn btn-outline-primary qbutton" id="back-button">Back</br>&lt-</button>
                     <button class="btn btn-outline-primary qbutton" id="next-button">Next</br>-&gt</button>
                 </div>
@@ -38,14 +38,14 @@
             <!-- Temp Countdown Timer: -->
             <div class="d-flex align-items-center">
                 <button id="toggleTimerBtn" class="btn btn-sm btn-outline-primary me-2">Hide Time</button>
-                <span id="Timer" class="navbar-text me-2">00:00</span>
+                <span id="Timer" class="navbar-text me-2"></span>
               </div>
         </div>
     </nav>
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <div class="mx-auto text-center">
-                <span class="navbar-text d-block"><b>Question <span id="question-number">0</span> of 3</b></span>
+                <span class="navbar-text d-block"><b>Question <span id="question-number">1</span> of 2</b></span>
             </div>
         </div>
     </nav>
@@ -55,38 +55,40 @@
     <div class="row custom-bigmt">
       <div class="col" id="question-col">
         <!-- question text -->
-        <p id="question-text">You are going to have some multiple choices questions for Section 1. No images will included in this section. Now you can set your interface for Section 1, it is not timed so take your time! When you are ready, click the "Start Section" button at top right to start!</p>
+        <p id="question-text">Called by some the “island that time forgot,” Madagascar is home to a vast array of unique, exotic creatures. One such animal is the aye-aye. First described by western science in 1782, it was initially categorized as a member of the order Rodentia. Further research then revealed that it was more closely related to the lemur, a member of the primate order. Since the aye-aye is so different from its fellow primates, however, it was given its own family: Daubentoniidae. The aye-aye has been listed as an endangered species and, as a result, the government of Madagascar has designated an island off the northeastern coast of Madagascar as a protected reserve for aye-ayes and other wildlife. Long before Western science became enthralled with this nocturnal denizen of Madagascar’s jungles, the aye-aye had its own reputation with the local people. The aye-aye is perhaps best known for its large, round eyes and long, extremely thin middle finger. These adaptations are quite sensible, allowing the aye-aye to see well at night and retrieve grubs, which are one of its primary food sources, from deep within hollow branches. However, the aye-aye’s striking appearance may end up causing its extinction. The people of Madagascar believe that the aye-aye is a type of spirit animal, and that its appearance is an omen of death. Whenever one is sighted, it is immediately killed. When combined with the loss of large swaths of jungle habitat, this practice may result in the loss of a superb example of life’s variety.</p>
+        <p>Q1. Based on the information given in the passage, the intended audience would most likely be: Q2. Consider each of the choices separately and select all that apply. Which of the following statements can be logically inferred from the passage?
+        </p>
         <!-- options form -->
         <div class="row mt-5">
             <form id="options-form">
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="option" id="option-0" value="80">
                     <label class="form-check-label" for="option-0">
-                    A
+                        visitors to a natural science museum
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="option" id="option-1" value="100">
                     <label class="form-check-label" for="option-1">
-                   B
+                        professors of evolutionary science
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="option" id="option-2" value="120">
                     <label class="form-check-label" for="option-2">
-                    C
+                        a third-grade science class
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="option" id="option-3" value="160">
                     <label class="form-check-label" for="option-3">
-                    D
+                        students of comparative religions
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="option" id="option-4" value="180">
                     <label class="form-check-label" for="option-4">
-                    E
+                        attendees at a world cultural symposium
                     </label>
                 </div>
             </form>
@@ -144,16 +146,16 @@
                         <div class="col-md-3"> 
                             <div class="input-group input-group-sm">
                                 <label  style="float: left; padding-right: 10px;"> Image Size</label>
-                                <button class="btn btn-sm btn-outline-secondary" type="button" id="decrease-img-size">-</button>
-                                <input type="text" id="image-size-input" class="form-control text-center" value="100%" aria-label="Select Image Size" style="display: inline-block; max-width: 55px;">
-                                <button class="btn btn-sm btn-outline-secondary" type="button" id="increase-img-size">+</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" id="decrease-img-size" disabled>-</button>
+                                <input type="text" id="image-size-input" class="form-control text-center" value="100%" aria-label="Select Image Size Disabled" style="display: inline-block; max-width: 55px;" disabled>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" id="increase-img-size" disabled>+</button>
                             </div>
                         </div>
-                        <div class="col-md-3"> 
-                            <label for="timer-style-select">Timer Style </label>
-                            <button id="timer-style-btn" class="btn btn-sm btn-outline-secondary me-2">Count Up</button>
+                            <div class="col-md-3"> 
+                                <label for="timer-style-select">Timer Style </label>
+                                <button id="timer-style-btn" class="btn btn-sm btn-outline-secondary me-2">Count Up</button>
+                            </div>
                         </div>
-                    </div>
 
                     <div class="row mt-2">
                         <div class="col-md-3"> 
@@ -167,7 +169,7 @@
                         <div class="col-md-3"> </div>
                         <div class="col-md-3">
                             <label for="img-pos-select">Image Position </label>
-                            <select class="form-select-sm" id="img-pos-select" aria-label="Select Image Position">
+                            <select class="form-select-sm" id="img-pos-select" aria-label="Select Image Position Disabled" disabled>
                                 <option selected value="default">To the Right</option>
                                 <option value="1">To the Left</option>
                                 </select>
@@ -199,10 +201,10 @@
             </div>
         </div>
     </div>
-    </div>
-
+    </div>    
     <script src="scripts/log.js"></script>
-    <script src="scripts/pre-section1.js"> </script>
+    <script src="scripts/timer.js"></script>
+    <script src="scripts/section2.js"> </script>
 </body>
 
 

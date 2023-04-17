@@ -22,11 +22,11 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <div class="navbar-nav me-auto">
-            <span class="navbar-text"><b>Pre Section 1</b></span>
+            <span class="navbar-text"><b>Section 3</b></span>
             </div>
             <div class="navbar-nav ms-auto">
                 <div>
-                    <button class="btn btn-outline-primary qbutton" id="section-start-btn">Start</br>Section</button>
+                    <button class="btn btn-outline-primary qbutton" id="display-log-btn">Submit</button>
                     <button class="btn btn-outline-primary qbutton" id="back-button">Back</br>&lt-</button>
                     <button class="btn btn-outline-primary qbutton" id="next-button">Next</br>-&gt</button>
                 </div>
@@ -38,14 +38,14 @@
             <!-- Temp Countdown Timer: -->
             <div class="d-flex align-items-center">
                 <button id="toggleTimerBtn" class="btn btn-sm btn-outline-primary me-2">Hide Time</button>
-                <span id="Timer" class="navbar-text me-2">00:00</span>
+                <span id="Timer" class="navbar-text me-2"></span>
               </div>
         </div>
     </nav>
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <div class="mx-auto text-center">
-                <span class="navbar-text d-block"><b>Question <span id="question-number">0</span> of 3</b></span>
+                <span class="navbar-text d-block"><b>Question <span id="question-number">1</span> of 2</b></span>
             </div>
         </div>
     </nav>
@@ -55,41 +55,11 @@
     <div class="row custom-bigmt">
       <div class="col" id="question-col">
         <!-- question text -->
-        <p id="question-text">You are going to have some multiple choices questions for Section 1. No images will included in this section. Now you can set your interface for Section 1, it is not timed so take your time! When you are ready, click the "Start Section" button at top right to start!</p>
+        <p id="question-text"> Each month, Renaldo earns a commission of 10.5% of his total sales for the month, plus a salary of $2,500. If Renaldo earns $3,025 in a certain month, what were his total sales?</p>
+        <p>Please enter your answer in the box:</p>
         <!-- options form -->
         <div class="row mt-5">
-            <form id="options-form">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="option" id="option-0" value="80">
-                    <label class="form-check-label" for="option-0">
-                    A
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="option" id="option-1" value="100">
-                    <label class="form-check-label" for="option-1">
-                   B
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="option" id="option-2" value="120">
-                    <label class="form-check-label" for="option-2">
-                    C
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="option" id="option-3" value="160">
-                    <label class="form-check-label" for="option-3">
-                    D
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="option" id="option-4" value="180">
-                    <label class="form-check-label" for="option-4">
-                    E
-                    </label>
-                </div>
-            </form>
+            <input type="text" id="answer-box" placeholder="Enter your answer here">
         </div>
       </div>
       <!-- <div class="col-md-6" id="img-col">
@@ -144,16 +114,16 @@
                         <div class="col-md-3"> 
                             <div class="input-group input-group-sm">
                                 <label  style="float: left; padding-right: 10px;"> Image Size</label>
-                                <button class="btn btn-sm btn-outline-secondary" type="button" id="decrease-img-size">-</button>
-                                <input type="text" id="image-size-input" class="form-control text-center" value="100%" aria-label="Select Image Size" style="display: inline-block; max-width: 55px;">
-                                <button class="btn btn-sm btn-outline-secondary" type="button" id="increase-img-size">+</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" id="decrease-img-size" disabled>-</button>
+                                <input type="text" id="image-size-input" class="form-control text-center" value="100%" aria-label="Select Image Size Disabled" style="display: inline-block; max-width: 55px;" disabled>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" id="increase-img-size" disabled>+</button>
                             </div>
                         </div>
-                        <div class="col-md-3"> 
-                            <label for="timer-style-select">Timer Style </label>
-                            <button id="timer-style-btn" class="btn btn-sm btn-outline-secondary me-2">Count Up</button>
+                            <div class="col-md-3"> 
+                                <label for="timer-style-select">Timer Style </label>
+                                <button id="timer-style-btn" class="btn btn-sm btn-outline-secondary me-2">Count Up</button>
+                            </div>
                         </div>
-                    </div>
 
                     <div class="row mt-2">
                         <div class="col-md-3"> 
@@ -167,7 +137,7 @@
                         <div class="col-md-3"> </div>
                         <div class="col-md-3">
                             <label for="img-pos-select">Image Position </label>
-                            <select class="form-select-sm" id="img-pos-select" aria-label="Select Image Position">
+                            <select class="form-select-sm" id="img-pos-select" aria-label="Select Image Position Disabled" disabled>
                                 <option selected value="default">To the Right</option>
                                 <option value="1">To the Left</option>
                                 </select>
@@ -199,10 +169,11 @@
             </div>
         </div>
     </div>
-    </div>
-
+    </div>    
     <script src="scripts/log.js"></script>
-    <script src="scripts/pre-section1.js"> </script>
+    <script src="scripts/timer.js"></script>
+    <script src="scripts/section2.js"> </script>
+    <script src="scripts/section3.js"></script>
 </body>
 
 
