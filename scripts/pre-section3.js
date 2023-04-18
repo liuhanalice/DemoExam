@@ -268,7 +268,7 @@ $(document).ready(function() {
         $(this).text('Count Up');
         textLog = "Count Down";
       }
-      consoleLog.push(`[${formatedTime}], Section-0, User changed timer style to ${textLog}.\n`);
+      consoleLog.push(`[${formatedTime}], Pre-Section-3, User changed timer style to ${textLog}.\n`);
     });
   
   

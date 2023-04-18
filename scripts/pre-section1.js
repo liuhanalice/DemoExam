@@ -238,7 +238,7 @@ $(document).ready(function() {
   // Change font color
    $('#font-color-picker').on('change', function() {
       var selectedColor = $(this).val();
-      $('#question-content').css('font', selectedColor);
+      $('#question-content').css('color', selectedColor);
       const currentTime = new Date().getTime();
       const relativeTimestamp = currentTime - initialTime;
       const formatedTime = formatTime(formatedTime);
@@ -326,6 +326,7 @@ $("#timer-style-btn").on('click', function() {
 
       // Save updated log data to local storage
       localStorage.setItem('consoleLog', JSON.stringify(existingLog));
+      
       window.location.href="section1.html";
     });
 

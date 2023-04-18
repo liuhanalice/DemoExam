@@ -34,10 +34,22 @@ $(document).ready(function () {
             clearInterval(countdownInterval);
             clearInterval(countupInterval);
             alert("Time's up!"); 
+            submitSection();
         } else {
             countDownTime -= 1;
             if (countDownTime < 60 && onem_alert == 0) {
-                toastr.warning("This section is about to close soon!");
+                toastr.warning("This section is about to close soon!",'',{
+                    "closeButton": true,
+                    "positionClass": "toast-top-center",
+                    "showDuration": "2000",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                });
                 onem_alert = 1;
             }
         }
