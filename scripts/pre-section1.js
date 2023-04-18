@@ -326,6 +326,7 @@ $("#timer-style-btn").on('click', function() {
 
       // Save updated log data to local storage
       localStorage.setItem('consoleLog', JSON.stringify(existingLog));
+      
       window.location.href="section1.html";
     });
 

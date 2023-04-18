@@ -1,7 +1,142 @@
 
+var nextPage = "pre-section3.html";
+var curSecAns = "sec2-ans";
+var currentQuestionIndex = 0;
+var userAnswers = {};
+
+
+
+window.submitSection = function(){
+    const selectedOption = $('input[name="option"]:checked').val();
+    userAnswers[currentQuestionIndex] = selectedOption;
+    $('#back-button').prop('disabled', true);
+    $('#next-button').prop('disabled', true);
+    $('#submit-button').prop('disabled', true);
+    localStorage.setItem(curSecAns, JSON.stringify(userAnswers));
+    // to retrieve: const sec1Ans = localStorage.getItem('sec1-ans'); JSON.parse(sec1Ans) to get the dictionary
+    
+    const currentTime = new Date().getTime();
+    const relativeTimestamp = currentTime - initialTime;
+    const formatedTime = formatTime(relativeTimestamp);
+    consoleLog.push(`[${formatedTime}], Section-2 Submitted\n`);
+    
+    // Retrieve existing log data from local storage
+    let existingLog = JSON.parse(localStorage.getItem('consoleLog'));
+    // Concatenate new log data to existing log data
+    existingLog = existingLog ? existingLog.concat(consoleLog) : consoleLog;
+    // Save updated log data to local storage
+    localStorage.setItem('consoleLog', JSON.stringify(existingLog));
+
+    
+    window.location.href = nextPage;
+    //console.log("section submit.")
+}
+
+
 $(document).ready(function() {
   
     initialTime = new Date().getTime();
+
+    //  --- restore previous changes --- //
+    // font size
+    if(localStorage.getItem("fontSize") !=  null){
+      var savedFontSize = parseInt(localStorage.getItem("fontSize"));
+      $("#font-size-input").val(savedFontSize);
+      $("#question-content").css("font-size", savedFontSize);
+    }
+    // timer size
+    if(localStorage.getItem("timerSize") !=  null){
+      var savedTimerSize = parseInt(localStorage.getItem("timerSize"));
+      $("#timer-size-input").val(savedTimerSize + '%');
+      $("#Timer").css('font-size',  20+(savedTimerSize-100)/10);
+    }
+    // image size
+    if(localStorage.getItem("imageSize") != null){
+      var savedImgSize = parseInt(localStorage.getItem("imageSize"));
+      $("#image-size-input").val(savedImgSize + "%");
+      $("#sec0-qimg").css("width", 4 * savedImgSize);
+      $("#sec0-qimg").css("height",  3 * savedImgSize);
+    }
+   
+    // font style
+    if(localStorage.getItem("fontStyle") != null){
+      var savedFontStyle = localStorage.getItem("fontStyle");
+      $("#font-style-select").val(savedFontStyle);
+      switch (savedFontStyle) {
+              case "1":
+                  $("#question-content").css("font-family", "Arial, sans-serif");
+                  break;
+              case "2":
+                  $("#question-content").css("font-family", "Georgia, serif");
+                  break;
+              case "3":
+                  $("#question-content").css("font-family", "Verdana, sans-serif");
+                  break;
+              case "4":
+                  $("#question-content").css("font-family", "Times New Roman");
+                  break;
+              case "5":
+                  $("#question-content").css("font-family", "fantasy");
+                  break;
+              case "6":
+                  $("#question-content").css("font-family", "cursive");
+                  break;
+              case "7":
+                  $("#question-content").css("font-family", "monospace");
+                  break;
+              case "8":
+                  $("#question-content").css("font-family", "Courier New");
+                  break;
+              case "9":
+                  $("#question-content").css("font-family", "Helvetica");
+                  break;
+              case "10":
+                  $("#question-content").css("font-family", "Lucida Console");
+                  break;
+              default:
+                  $("#question-content").css("font-family", "inherit");
+                  break;
+          }
+    }
+    
+    // imagePos
+    if(localStorage.getItem("imagePos") != null){
+      var savedImgPos = localStorage.getItem("imagePos");
+      $("#img-pos-select").val(savedImgPos);
+      switch (savedImgPos) {
+                case "1":
+                  $("#question-col").insertAfter($('#img-col'));
+                  break;
+                default:
+                  $('#img-col').insertAfter($("#question-col"));
+                  break;
+      }
+    }
+    
+    // bkg color
+    if(localStorage.getItem("bkgColor") != null){
+      var savedBkgColor = localStorage.getItem("bkgColor");
+      $('#bkg-color-picker').val(savedBkgColor);
+      $('body').css('background-color', savedBkgColor);
+    }
+    
+
+    // font color
+    if(localStorage.getItem("fontColor") != null){
+      var savedFontColor = localStorage.getItem("fontColor");
+      $('#font-color-picker').val(savedFontColor);
+      $('#question-content').css('color', savedFontColor);
+    }
+
+    // timer color
+    if(localStorage.getItem("timerColor") != null){
+      var savedTimerColor = localStorage.getItem("timerColor");
+      $('#timer-color-picker').val(savedTimerColor);
+      $('#Timer').css('color', savedTimerColor);
+    }
+
+  // ---- //
+
     // Collapse or expnd the setting panel
       $("#panelToggle").click(function() {
         if ($(this).hasClass("collapsed")) {
@@ -311,25 +446,20 @@ $(document).ready(function() {
   
       const questions=[
         {
-          question: "Called by some the “island that time forgot,” Madagascar is home to a vast array of unique, exotic creatures. One such animal is the aye-aye. First described by western science in 1782, it was initially categorized as a member of the order Rodentia. Further research then revealed that it was more closely related to the lemur, a member of the primate order. Since the aye-aye is so different from its fellow primates, however, it was given its own family: Daubentoniidae. The aye-aye has been listed as an endangered species and, as a result, the government of Madagascar has designated an island off the northeastern coast of Madagascar as a protected reserve for aye-ayes and other wildlife.",
+          question: "Based on the information given in the passage, the intended audience would most likely be?",
           options: ["visitors to a natural science museum","professors of evolutionary science","a third-grade science class","students of comparative religions","attendees at a world cultural symposium"]
         },
         {
-          question: "Called by some the “island that time forgot,” Madagascar is home to a vast array of unique, exotic creatures. One such animal is the aye-aye. First described by western science in 1782, it was initially categorized as a member of the order Rodentia. Further research then revealed that it was more closely related to the lemur, a member of the primate order. Since the aye-aye is so different from its fellow primates, however, it was given its own family: Daubentoniidae. The aye-aye has been listed as an endangered species and, as a result, the government of Madagascar has designated an island off the northeastern coast of Madagascar as a protected reserve for aye-ayes and other wildlife. Long before Western science became enthralled with this nocturnal denizen of Madagascar’s jungles, the aye-aye had its own reputation with the local people. The aye-aye is perhaps best known for its large, round eyes and long, extremely thin middle finger. These adaptations are quite sensible, allowing the aye-aye to see well at night and retrieve grubs, which are one of its primary food sources, from deep within hollow branches. However, the aye-aye’s striking appearance may end up causing its extinction. The people of Madagascar believe that the aye-aye is a type of spirit animal, and that its appearance is an omen of death. Whenever one is sighted, it is immediately killed. When combined with the loss of large swaths of jungle habitat, this practice may result in the loss of a superb example of life’s variety.",
+          question: "Consider each of the choices separately and select all that apply. Which of the following statements can be logically inferred from the passage?",
           options: ["Taxonomic classifications are not always absolute.", "The traditional religion of Madagascar involves augury.", "There are no longer enough resources on the main island to support the aye-aye population."]
         },
       ]
   
-    let currentQuestionIndex = 0;
-    const userAnswers = {};
-    const $questionText = $('#question-text');
-    const $optionsForm = $('#options-form');
-  
     function updateQuestion() {
       $('#question-number').text((currentQuestionIndex + 1).toString());
       const currentQuestion = questions[currentQuestionIndex];
-      $questionText.text(currentQuestion.question);
-      $optionsForm.empty();
+      $('#question-text').text(currentQuestion.question);
+      $('#options-form').empty();
       $.each(currentQuestion.options, function(index, option) {
         const $option = $(`
           <div class="form-check">
@@ -342,7 +472,7 @@ $(document).ready(function() {
         if (userAnswers[currentQuestionIndex] === option) {
           $option.find('input').prop('checked', true);
         }
-        $optionsForm.append($option);
+        $('#options-form').append($option);
       });
     }
   
@@ -364,14 +494,31 @@ $(document).ready(function() {
       }
     });
   
-    $('#submit-button').on('click', function(){
-      const selectedOption = $('input[name="option"]:checked').val();
-      userAnswers[currentQuestionIndex] = selectedOption;
-      $('#back-button').prop('disabled', true);
-      $('#next-button').prop('disabled', true);
-      $('#submit-button').prop('disabled', true);
-      localStorage.setItem("sec2-ans", JSON.stringify(userAnswers));
-      // to retrieve: const sec1Ans = localStorage.getItem('sec1-ans'); JSON.parse(sec1Ans) to get the dictionary
+ $('#submit-button').on('click', function(){
+    //console.log("submit clicked");
+
+    // define a named function to handle the "Yes" button click event
+    function handleYesButtonClick() {
+      submitSection(); // call the submitSection function
+      toastr.clear(); // close the toastr message
+    }
+
+  toastr.info(
+    '<button type="button" class="btn clear btn-danger" id="yesSubmit">Yes</button> <button type="button" class="btn clear btn-secondary" onclick="toastr.clear()">NO</button>',
+    'Are you sure to submit?', {
+      "closeButton": true,
+      "positionClass": "toast-top-center",
+      "timeOut": 0,
+      "extendedTimeOut": 0,
+      "preventDuplicates": true,
+      "disableTimeOut": true,
+      "onShown": function() {
+        // attach the handleYesButtonClick function to the click event of the "Yes" button
+        $('#yesSubmit').click(handleYesButtonClick);
+      }
     });
+    
+  });
+
   
   });

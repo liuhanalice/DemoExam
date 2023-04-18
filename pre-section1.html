@@ -26,7 +26,7 @@
             </div>
             <div class="navbar-nav ms-auto">
                 <div>
-                    <button class="btn btn-outline-primary qbutton" id="section-start-btn">Start</br>Section</button>
+                    <button class="btn btn-outline-primary qbutton" id="section-start-btn" style="text-align: center; background-color:aliceblue; padding: 0px;">Start</br>Section</button>
                     <button class="btn btn-outline-primary qbutton" id="back-button">Back</br>&lt-</button>
                     <button class="btn btn-outline-primary qbutton" id="next-button">Next</br>-&gt</button>
                 </div>
@@ -144,9 +144,9 @@
                         <div class="col-md-3"> 
                             <div class="input-group input-group-sm">
                                 <label  style="float: left; padding-right: 10px;"> Image Size</label>
-                                <button class="btn btn-sm btn-outline-secondary" type="button" id="decrease-img-size">-</button>
-                                <input type="text" id="image-size-input" class="form-control text-center" value="100%" aria-label="Select Image Size" style="display: inline-block; max-width: 55px;">
-                                <button class="btn btn-sm btn-outline-secondary" type="button" id="increase-img-size">+</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" id="decrease-img-size" disabled>-</button>
+                                <input type="text" id="image-size-input" class="form-control text-center" value="100%" aria-label="Select Image Size" style="display: inline-block; max-width: 55px;" disabled>
+                                <button class="btn btn-sm btn-outline-secondary" type="button" id="increase-img-size" disabled>+</button>
                             </div>
                         </div>
                         <div class="col-md-3"> 
@@ -167,7 +167,7 @@
                         <div class="col-md-3"> </div>
                         <div class="col-md-3">
                             <label for="img-pos-select">Image Position </label>
-                            <select class="form-select-sm" id="img-pos-select" aria-label="Select Image Position">
+                            <select class="form-select-sm" id="img-pos-select" aria-label="Select Image Position" disabled>
                                 <option selected value="default">To the Right</option>
                                 <option value="1">To the Left</option>
                                 </select>

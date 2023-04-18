@@ -1,7 +1,140 @@
+var nextPage = "pre-section2.html";
+var curSecAns = "sec1-ans";
+var currentQuestionIndex = 0;
+var userAnswers = {};
+
+
+window.submitSection = function(){
+    const selectedOption = $('input[name="option"]:checked').val();
+    userAnswers[currentQuestionIndex] = selectedOption;
+    $('#back-button').prop('disabled', true);
+    $('#next-button').prop('disabled', true);
+    $('#submit-button').prop('disabled', true);
+    localStorage.setItem(curSecAns, JSON.stringify(userAnswers));
+    // to retrieve: const sec1Ans = localStorage.getItem('sec1-ans'); JSON.parse(sec1Ans) to get the dictionary
+    
+    const currentTime = new Date().getTime();
+    const relativeTimestamp = currentTime - initialTime;
+    const formatedTime = formatTime(relativeTimestamp);
+    consoleLog.push(`[${formatedTime}], Section-1 Submitted\n`);
+
+    // Retrieve existing log data from local storage
+    let existingLog = JSON.parse(localStorage.getItem('consoleLog'));
+    // Concatenate new log data to existing log data
+    existingLog = existingLog ? existingLog.concat(consoleLog) : consoleLog;
+    // Save updated log data to local storage
+    localStorage.setItem('consoleLog', JSON.stringify(existingLog));
+
+    
+    window.location.href = nextPage;
+    //console.log("section submit.")
+}
+
 
 $(document).ready(function() {
   
   initialTime = new Date().getTime();
+
+  //  --- restore previous changes --- //
+    // font size
+    if(localStorage.getItem("fontSize") !=  null){
+      var savedFontSize = parseInt(localStorage.getItem("fontSize"));
+      $("#font-size-input").val(savedFontSize);
+      $("#question-content").css("font-size", savedFontSize);
+    }
+    // timer size
+    if(localStorage.getItem("timerSize") !=  null){
+      var savedTimerSize = parseInt(localStorage.getItem("timerSize"));
+      $("#timer-size-input").val(savedTimerSize + '%');
+      $("#Timer").css('font-size',  20+(savedTimerSize-100)/10);
+    }
+    // image size
+    if(localStorage.getItem("imageSize") != null){
+      var savedImgSize = parseInt(localStorage.getItem("imageSize"));
+      $("#image-size-input").val(savedImgSize + "%");
+      $("#sec0-qimg").css("width", 4 * savedImgSize);
+      $("#sec0-qimg").css("height",  3 * savedImgSize);
+    }
+   
+    // font style
+    if(localStorage.getItem("fontStyle") != null){
+      var savedFontStyle = localStorage.getItem("fontStyle");
+      $("#font-style-select").val(savedFontStyle);
+      switch (savedFontStyle) {
+              case "1":
+                  $("#question-content").css("font-family", "Arial, sans-serif");
+                  break;
+              case "2":
+                  $("#question-content").css("font-family", "Georgia, serif");
+                  break;
+              case "3":
+                  $("#question-content").css("font-family", "Verdana, sans-serif");
+                  break;
+              case "4":
+                  $("#question-content").css("font-family", "Times New Roman");
+                  break;
+              case "5":
+                  $("#question-content").css("font-family", "fantasy");
+                  break;
+              case "6":
+                  $("#question-content").css("font-family", "cursive");
+                  break;
+              case "7":
+                  $("#question-content").css("font-family", "monospace");
+                  break;
+              case "8":
+                  $("#question-content").css("font-family", "Courier New");
+                  break;
+              case "9":
+                  $("#question-content").css("font-family", "Helvetica");
+                  break;
+              case "10":
+                  $("#question-content").css("font-family", "Lucida Console");
+                  break;
+              default:
+                  $("#question-content").css("font-family", "inherit");
+                  break;
+          }
+    }
+    
+    // imagePos
+    if(localStorage.getItem("imagePos") != null){
+      var savedImgPos = localStorage.getItem("imagePos");
+      $("#img-pos-select").val(savedImgPos);
+      switch (savedImgPos) {
+                case "1":
+                  $("#question-col").insertAfter($('#img-col'));
+                  break;
+                default:
+                  $('#img-col').insertAfter($("#question-col"));
+                  break;
+      }
+    }
+    
+    // bkg color
+    if(localStorage.getItem("bkgColor") != null){
+      var savedBkgColor = localStorage.getItem("bkgColor");
+      $('#bkg-color-picker').val(savedBkgColor);
+      $('body').css('background-color', savedBkgColor);
+    }
+    
+
+    // font color
+    if(localStorage.getItem("fontColor") != null){
+      var savedFontColor = localStorage.getItem("fontColor");
+      $('#font-color-picker').val(savedFontColor);
+      $('#question-content').css('color', savedFontColor);
+    }
+
+    // timer color
+    if(localStorage.getItem("timerColor") != null){
+      var savedTimerColor = localStorage.getItem("timerColor");
+      $('#timer-color-picker').val(savedTimerColor);
+      $('#Timer').css('color', savedTimerColor);
+    }
+
+  // ---- //
+
   // Collapse or expnd the setting panel
     $("#panelToggle").click(function() {
       if ($(this).hasClass("collapsed")) {
@@ -324,16 +457,11 @@ $(document).ready(function() {
       },
     ]
 
-  let currentQuestionIndex = 0;
-  const userAnswers = {};
-  const $questionText = $('#question-text');
-  const $optionsForm = $('#options-form');
-
   function updateQuestion() {
     $('#question-number').text((currentQuestionIndex + 1).toString());
     const currentQuestion = questions[currentQuestionIndex];
-    $questionText.text(currentQuestion.question);
-    $optionsForm.empty();
+    $('#question-text').text(currentQuestion.question);
+    $('#options-form').empty();
     $.each(currentQuestion.options, function(index, option) {
       const $option = $(`
         <div class="form-check">
@@ -346,7 +474,7 @@ $(document).ready(function() {
       if (userAnswers[currentQuestionIndex] === option) {
         $option.find('input').prop('checked', true);
       }
-      $optionsForm.append($option);
+      $('#options-form').append($option);
     });
   }
 
@@ -368,14 +496,35 @@ $(document).ready(function() {
     }
   });
 
+
+
+
   $('#submit-button').on('click', function(){
-    const selectedOption = $('input[name="option"]:checked').val();
-    userAnswers[currentQuestionIndex] = selectedOption;
-    $('#back-button').prop('disabled', true);
-    $('#next-button').prop('disabled', true);
-    $('#submit-button').prop('disabled', true);
-    localStorage.setItem("sec1-ans", JSON.stringify(userAnswers));
-    // to retrieve: const sec1Ans = localStorage.getItem('sec1-ans'); JSON.parse(sec1Ans) to get the dictionary
+    //console.log("submit clicked");
+
+    // define a named function to handle the "Yes" button click event
+    function handleYesButtonClick() {
+      submitSection(); // call the submitSection function
+      toastr.clear(); // close the toastr message
+    }
+
+  toastr.info(
+    '<button type="button" class="btn clear btn-danger" id="yesSubmit">Yes</button> <button type="button" class="btn clear btn-secondary" onclick="toastr.clear()">NO</button>',
+    'Are you sure to submit?', {
+      "closeButton": true,
+      "positionClass": "toast-top-center",
+      "timeOut": 0,
+      "extendedTimeOut": 0,
+      "preventDuplicates": true,
+      "disableTimeOut": true,
+      "onShown": function() {
+        // attach the handleYesButtonClick function to the click event of the "Yes" button
+        $('#yesSubmit').click(handleYesButtonClick);
+      }
+    });
+    
   });
+
+  
 
 });

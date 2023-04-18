@@ -31,8 +31,7 @@
         
         <div class="form-group">
             <label for="logTextarea">Please Copy:</label>
-            <button onclick="myFunction()">copy Text</button>
-
+            <button  class="btn btn-outline-primary" id="copyButton" >Click to Copy</button>
             <textarea class="form-control form-control-lg rounded-5 shadow-none" id="logTextarea" rows="40" style="font-size: small;" disabled></textarea>
         </div>
 
@@ -57,22 +56,20 @@
             $("#logTextarea").val(consoleLog);
             localStorage.clear();
         });
-
-        function myFunction() {
-  // Get the text field
+        
         var copyText = document.getElementById("logTextarea");
-
-  // Select the text field
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); // For mobile devices
-
-   // Copy the text inside the text field
-        navigator.clipboard.writeText(copyText.value);
-
-  // Alert the copied text
-        alert("Copied the text, please paste it to the survey, thanks.");
-        }
-
+        var copyButton = document.getElementById('copyButton');
+        
+        copyButton.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(logTextarea.value);
+                alert("Copied the text, please paste it to the survey, thanks.");
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                alert("Faile to copy the text, please copy and paste it manually to the survey, thanks.");
+            }
+        });
+        
     </script>
    
 </body>

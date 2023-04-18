@@ -22,7 +22,7 @@ input[type="color"] {
   height: 20px;
   width: 20px;
   padding: 0;
-  border: none;
+  border: 1px solid black;
   box-shadow: none;
   outline: none;
 }
