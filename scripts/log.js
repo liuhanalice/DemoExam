@@ -1,7 +1,7 @@
 consoleLog = [];
 
 // Helper function to format a timestamp in "mm:ss" format
-function formatTime(milliseconds) {
+window.formatTime = function(milliseconds) {
   const totalSeconds = Math.floor(milliseconds / 1000);
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;

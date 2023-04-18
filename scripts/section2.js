@@ -15,6 +15,11 @@ window.submitSection = function(){
     localStorage.setItem(curSecAns, JSON.stringify(userAnswers));
     // to retrieve: const sec1Ans = localStorage.getItem('sec1-ans'); JSON.parse(sec1Ans) to get the dictionary
     
+    const currentTime = new Date().getTime();
+    const relativeTimestamp = currentTime - initialTime;
+    const formatedTime = formatTime(relativeTimestamp);
+    consoleLog.push(`[${formatedTime}], Section-2 Submitted\n`);
+    
     // Retrieve existing log data from local storage
     let existingLog = JSON.parse(localStorage.getItem('consoleLog'));
     // Concatenate new log data to existing log data
