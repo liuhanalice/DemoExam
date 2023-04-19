@@ -1,22 +1,25 @@
-var nextPage = "pre-section4.html";
-var curSecAns = "sec3-ans";
+
+var nextPage = "end.html";
+var curSecAns = "sec4-ans";
 var currentQuestionIndex = 0;
 var userAnswers = {};
 
+
+
 window.submitSection = function(){
-    const curAnswer = $('#answer-box').val();
-    userAnswers[currentQuestionIndex] = curAnswer;
+    const selectedOption = $('input[name="option"]:checked').val();
+    userAnswers[currentQuestionIndex] = selectedOption;
     $('#back-button').prop('disabled', true);
     $('#next-button').prop('disabled', true);
     $('#submit-button').prop('disabled', true);
     localStorage.setItem(curSecAns, JSON.stringify(userAnswers));
-    //to retrieve: const sec3Ans = localStorage.getItem('sec3-ans'); JSON.parse(sec3Ans) to get the dictionary
+    // to retrieve: const sec1Ans = localStorage.getItem('sec1-ans'); JSON.parse(sec1Ans) to get the dictionary
     
     const currentTime = new Date().getTime();
     const relativeTimestamp = currentTime - initialTime;
     const formatedTime = formatTime(relativeTimestamp);
-    consoleLog.push(`[${formatedTime}], Section-3 Submitted\n`);
-
+    consoleLog.push(`[${formatedTime}], Section-4 Submitted\n`);
+    
     // Retrieve existing log data from local storage
     let existingLog = JSON.parse(localStorage.getItem('consoleLog'));
     // Concatenate new log data to existing log data
@@ -26,12 +29,13 @@ window.submitSection = function(){
 
     
     window.location.href = nextPage;
+    //console.log("section submit.")
 }
+
 
 $(document).ready(function() {
   
     initialTime = new Date().getTime();
-
 
     //  --- restore previous changes --- //
     // font size
@@ -151,9 +155,9 @@ $(document).ready(function() {
         if (currentFontSize > 1) {
           $("#font-size-input").val(currentFontSize - 1);
           $("#question-content").css("font-size", currentFontSize - 1 + "px");
-          consoleLog.push(`[${formatedTime}], Section-3, User decreased font size to ${$("#font-size-input").val()}.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User decreased font size to ${$("#font-size-input").val()}.\n`);
         } else{
-          consoleLog.push(`[${formatedTime}], Section-3, User tried to decrease font size below minimum.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User tried to decrease font size below minimum.\n`);
         }
        
       });
@@ -167,9 +171,9 @@ $(document).ready(function() {
         if(currentFontSize <30){
           $("#font-size-input").val(currentFontSize + 1);
           $("#question-content").css("font-size", currentFontSize + 1 + "px");
-          consoleLog.push(`[${formatedTime}], Section-3, User increased font size to ${$("#font-size-input").val()}.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User increased font size to ${$("#font-size-input").val()}.\n`);
         } else{
-          consoleLog.push(`[${formatedTime}], Section-3, User tried to increase font size over maximum.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User tried to increase font size over maximum.\n`);
         }
         
       });
@@ -183,9 +187,9 @@ $(document).ready(function() {
         const formatedTime = formatTime(relativeTimestamp);
         if (currentFontSize >= 1 && currentFontSize <= 30) {
           $("#question-content").css("font-size", currentFontSize); 
-          consoleLog.push(`[${formatedTime}], Section-3, User changed font size to ${$(this).val()}.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User changed font size to ${$(this).val()}.\n`);
         } else{
-          consoleLog.push(`[${formatedTime}], Section-3, User tried to change font size to an invalid value.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User tried to change font size to an invalid value.\n`);
         }
        
       });
@@ -200,9 +204,9 @@ $(document).ready(function() {
           currentTimerSize -= 10;
           $("#timer-size-input").val(currentTimerSize + '%');
           $("#Timer").css('font-size',  20+(currentTimerSize-100)/10);
-          consoleLog.push(`[${formatedTime}], Section-3, User decreased timer size to ${$("#timer-size-input").val()}.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User decreased timer size to ${$("#timer-size-input").val()}.\n`);
         } else{
-          consoleLog.push(`[${formatedTime}], Section-3, User tried to decrease timer size below minimum.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User tried to decrease timer size below minimum.\n`);
         }
         
       });
@@ -217,9 +221,9 @@ $(document).ready(function() {
           currentTimerSize += 10;
           $("#timer-size-input").val(currentTimerSize + '%');
           $("#Timer").css('font-size',  20+(currentTimerSize - 100)/10);
-          consoleLog.push(`[${formatedTime}], Section-3, User increased timer size to ${$("#timer-size-input").val()}.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User increased timer size to ${$("#timer-size-input").val()}.\n`);
         } else{
-          consoleLog.push(`[${formatedTime}], Section-3, User tried to increase timer size over maximum.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User tried to increase timer size over maximum.\n`);
         }
       });
   
@@ -232,12 +236,12 @@ $(document).ready(function() {
         if (currentTimerSize >= 10 && currentTimerSize <= 500) {
           $("#timer-size-input").val(currentTimerSize + '%');
           $("#Timer").css('font-size',  20+(currentTimerSize-100)/10);
-          consoleLog.push(`[${formatedTime}], Section-3, User changed timer size to ${$(this).val()}.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User changed timer size to ${$(this).val()}.\n`);
         } else{
           currentTimerSize = 100;
           $("#timer-size-input").val(currentTimerSize + '%');
           $("#Timer").css('font-size',  20);
-          consoleLog.push(`[${formatedTime}], Section-3, User tried to change timer size to an invalid value.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User tried to change timer size to an invalid value.\n`);
         }
       });
     
@@ -252,10 +256,10 @@ $(document).ready(function() {
           $("#image-size-input").val(currentImgHeight/3+ "%");
           $("#sec0-qimg").css("width", currentImgHeight/3 *4);
           $("#sec0-qimg").css("height", currentImgHeight);
-          consoleLog.push(`[${formatedTime}], Section-3, User decreased image size to ${$("#image-size-input").val()}.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User decreased image size to ${$("#image-size-input").val()}.\n`);
         }
         else{
-          consoleLog.push(`[${formatedTime}], Section-3, User tried to decrease image size below minimum.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User tried to decrease image size below minimum.\n`);
         }
       });
     
@@ -270,9 +274,9 @@ $(document).ready(function() {
           $("#image-size-input").val(currentImgHeight/3+ "%");
           $("#sec0-qimg").css("width", currentImgHeight/3 *4);
           $("#sec0-qimg").css("height", currentImgHeight);
-          consoleLog.push(`[${formatedTime}], Section-3, User increased image size to ${$("#image-size-input").val()}.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User increased image size to ${$("#image-size-input").val()}.\n`);
         } else{
-          consoleLog.push(`[${formatedTime}], Section-3, User tried to increase image size over maximum.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User tried to increase image size over maximum.\n`);
         }
       });
   
@@ -284,11 +288,11 @@ $(document).ready(function() {
         const formatedTime = formatTime(relativeTimestamp);
         if(currentImgSize >= 10 && currentImgSize <= 200){
           $("#image-size-input").val(currentImgSize + "%");
-          consoleLog.push(`[${formatedTime}], Section-3, User changed image size to ${$(this).val()}.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User changed image size to ${$(this).val()}.\n`);
         } else{
           currentImgSize = 100;
           $("#image-size-input").val(currentImgSize + "%");
-          consoleLog.push(`[${formatedTime}], Section-3, User tried to change image size to an invalid value.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User tried to change image size to an invalid value.\n`);
         }
         var imgHeight = 3 * currentImgSize;
         var imgWidth = 4 * currentImgSize;
@@ -337,7 +341,7 @@ $(document).ready(function() {
           const currentTime = new Date().getTime();
           const relativeTimestamp = currentTime - initialTime;
           const formatedTime = formatTime(relativeTimestamp);
-          consoleLog.push(`[${formatedTime}], Section-3, User changed font style to ${$('#font-style-select option:selected').text()}.\n`);
+          consoleLog.push(`[${formatedTime}], Section-4, User changed font style to ${$('#font-style-select option:selected').text()}.\n`);
       });
     
     // Change img position
@@ -354,7 +358,7 @@ $(document).ready(function() {
         const currentTime = new Date().getTime();
         const relativeTimestamp = currentTime - initialTime;
         const formatedTime = formatTime(relativeTimestamp);
-        consoleLog.push(`[${formatedTime}], Section-3, User changed image position to ${$("#img-pos-select option:selected").text()}.\n`);
+        consoleLog.push(`[${formatedTime}], Section-4, User changed image position to ${$("#img-pos-select option:selected").text()}.\n`);
       });
   
     // Change bkg color
@@ -364,7 +368,7 @@ $(document).ready(function() {
         const currentTime = new Date().getTime();
         const relativeTimestamp = currentTime - initialTime;
         const formatedTime = formatTime(relativeTimestamp);
-        consoleLog.push(`[${formatedTime}], Section-3, User changed background color to ${$(this).val()}.\n`);
+        consoleLog.push(`[${formatedTime}], Section-4, User changed background color to ${$(this).val()}.\n`);
       });
   
     // Change font color
@@ -374,7 +378,7 @@ $(document).ready(function() {
         const currentTime = new Date().getTime();
         const relativeTimestamp = currentTime - initialTime;
         const formatedTime = formatTime(relativeTimestamp);
-        consoleLog.push(`[${formatedTime}], Section-3, User changed font color to ${$(this).val()}.\n`);
+        consoleLog.push(`[${formatedTime}], Section-4, User changed font color to ${$(this).val()}.\n`);
       });
     
     // Change timer color
@@ -384,7 +388,7 @@ $(document).ready(function() {
         const currentTime = new Date().getTime();
         const relativeTimestamp = currentTime - initialTime;
         const formatedTime = formatTime(relativeTimestamp);
-        consoleLog.push(`[${formatedTime}], Section-3, User changed timer color to ${$(this).val()}.\n`);
+        consoleLog.push(`[${formatedTime}], Section-4, User changed timer color to ${$(this).val()}.\n`);
       });
   
     // Change timer style (here only log change activities, function write in timer.js)
@@ -400,7 +404,7 @@ $(document).ready(function() {
         $(this).text('Count Up');
         textLog = "Count Down";
       }
-      consoleLog.push(`[${formatedTime}], Section-3, User changed timer style to ${textLog}.\n`);
+      consoleLog.push(`[${formatedTime}], Section-4, User changed timer style to ${textLog}.\n`);
     });
   
   
@@ -437,32 +441,49 @@ $(document).ready(function() {
         const currentTime = new Date().getTime();
         const relativeTimestamp = currentTime - initialTime;
         const formatedTime = formatTime(relativeTimestamp);
-        consoleLog.push(`[${formatedTime}], Section-3, User reset UI to default .\n`);
+        consoleLog.push(`[${formatedTime}], Section-4, User reset UI to default .\n`);
       });
-
-    const questions=[
-      {
-        question: "Each month, Renaldo earns a commission of 10.5% of his total sales for the month, plus a salary of $2,500. If Renaldo earns $3,025 in a certain month, what were his total sales?",
-      },
-      {
-        question: "At a recent dog show, there were 5 finalists. One of the finalists was awarded 'Best in Show' and another finalist was awarded 'Honorable Mention.' In how many different ways could the two awards be given out?",
-      },
-    ]
-
+  
+      const questions=[
+        {
+          question: "The graph of which of the following equations is a straight line that is parallel to line M in the figure above and intersects the negative direction of Y-axis?",
+          options: ["4y+3x=0","4y-3x=-2","4y-3x=4","4y+3x=-4","4y-3x=0"]
+        },
+        {
+          question: "If ABC is a straight line as shown in the figure below, and the angles x & y are integer multiples of 20, what is the value of x?",
+          options: ["20\u00B0", "40\u00B0", "60\u00B0","80\u00B0","100\u00B0"]
+        },
+        {
+          question: "In the figure shown above, line segment BC has length 16 cm, rectangle FABE is a square, and the area of rectangular region FACD is 612 cm\u00B2. Quantity A: Area of FABE; Quantity B: Area of EBCD;",
+          options: ["Quantity A is greater.", "Quantity B is greater.", "The two quantities are equal.", "The relationship cannot be determined from the information given."]
+        },
+      ]
+  
     function updateQuestion() {
       $('#question-number').text((currentQuestionIndex + 1).toString());
       const currentQuestion = questions[currentQuestionIndex];
       $('#question-text').text(currentQuestion.question);
-
-      const curAnswer = userAnswers[currentQuestionIndex] || "";
-      $('#answer-box').val(curAnswer);
-     
+      $('#options-form').empty();
+      $.each(currentQuestion.options, function(index, option) {
+        const $option = $(`
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="option" id="option-${index}" value="${option}">
+            <label class="form-check-label" for="option-${index}">
+              ${option}
+            </label>
+          </div>
+        `);
+        if (userAnswers[currentQuestionIndex] === option) {
+          $option.find('input').prop('checked', true);
+        }
+        $('#options-form').append($option);
+      });
+       $('#sec0-qimg').attr('src', `img/${currentQuestionIndex}.png`);
     }
-
   
     $('#back-button').on('click', function(){
-      const curAnswer = $('#answer-box').val();
-      userAnswers[currentQuestionIndex] = curAnswer;
+      const selectedOption = $('input[name="option"]:checked').val();
+      userAnswers[currentQuestionIndex] = selectedOption;
       if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
         updateQuestion();
@@ -470,38 +491,39 @@ $(document).ready(function() {
     });
   
     $('#next-button').on('click', function() {
-      const curAnswer = $('#answer-box').val();
-      userAnswers[currentQuestionIndex] = curAnswer;
+      const selectedOption = $('input[name="option"]:checked').val();
+      userAnswers[currentQuestionIndex] = selectedOption;
       if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
         updateQuestion();
       }
     });
   
-    $('#submit-button').on('click', function(){
+ $('#submit-button').on('click', function(){
     //console.log("submit clicked");
 
-      // define a named function to handle the "Yes" button click event
-      function handleYesButtonClick() {
-        toastr.clear(); // close the toastr message
-        submitSection(); // call the submitSection function
-      }
+    // define a named function to handle the "Yes" button click event
+    function handleYesButtonClick() {
+      submitSection(); // call the submitSection function
+      toastr.clear(); // close the toastr message
+    }
 
-      toastr.info(
-        '<button type="button" class="btn clear btn-danger" id="yesSubmit">Yes</button> <button type="button" class="btn clear btn-secondary" onclick="toastr.clear()">NO</button>',
-        'Are you sure to submit?', {
-          "closeButton": true,
-          "positionClass": "toast-top-center",
-          "timeOut": 0,
-          "extendedTimeOut": 0,
-          "preventDuplicates": true,
-          "disableTimeOut": true,
-          "onShown": function() {
-            // attach the handleYesButtonClick function to the click event of the "Yes" button
-            $('#yesSubmit').click(handleYesButtonClick);
-          }
+  toastr.info(
+    '<button type="button" class="btn clear btn-danger" id="yesSubmit">Yes</button> <button type="button" class="btn clear btn-secondary" onclick="toastr.clear()">NO</button>',
+    'Are you sure to submit?', {
+      "closeButton": true,
+      "positionClass": "toast-top-center",
+      "timeOut": 0,
+      "extendedTimeOut": 0,
+      "preventDuplicates": true,
+      "disableTimeOut": true,
+      "onShown": function() {
+        // attach the handleYesButtonClick function to the click event of the "Yes" button
+        $('#yesSubmit').click(handleYesButtonClick);
+      }
     });
     
   });
+
   
   });
