@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const totalTime = 1 * 70;
+    const totalTime = 1 * 600;
     let countDownTime = totalTime;
     let countUpTime = 0;
     const timerItem = $('#Timer');
