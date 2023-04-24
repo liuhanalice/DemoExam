@@ -39,8 +39,10 @@
 
     <div class="container mt-5">
         
+        <h5>Your answers:</h5>
+        <p id="useranswers"> </p>
         <div>
-            If you want to see the demo exam answers: <a href="https://docs.google.com/document/d/11LGl1hFOtZkD5HyyNMrn5J7GogaXBy6ObD2N6eKpfSI/edit?usp=sharing" target="_blank"> click here</a>
+            <h5>If you want to see the demo exam answers: <a href="https://docs.google.com/document/d/11LGl1hFOtZkD5HyyNMrn5J7GogaXBy6ObD2N6eKpfSI/edit?usp=sharing" target="_blank"> click here</a></h5>
         </div>
         
     </div>
@@ -61,6 +63,27 @@
             }
 
             $("#logTextarea").val(consoleLog);
+            
+            // Reterieving user answers
+            const sec1Answers = localStorage.getItem('sec1-ans');
+            const sec2Answers = localStorage.getItem('sec2-ans');
+            const sec3Answers = localStorage.getItem('sec3-ans');
+            const sec4Answers = localStorage.getItem('sec4-ans');
+            var userAnswers = "";
+            if(sec1Answers){
+                userAnswers += '<strong>Section 1 Answer: </strong>' + JSON.stringify(JSON.parse(sec1Answers)) + '<br>';
+            }
+            if(sec2Answers){
+                userAnswers += '<strong>Section 2 Answer: </strong>' + JSON.stringify(JSON.parse(sec2Answers)) + '<br>';
+            }
+            if(sec3Answers){
+               userAnswers += '<strong>Section 3 Answer: </strong>' + JSON.stringify(JSON.parse(sec3Answers)) + '<br>';
+            }
+            if(sec4Answers){
+               userAnswers += '<strong>Section 4 Answer: </strong>' + JSON.stringify(JSON.parse(sec4Answers)) + '<br>';
+            }
+            $('#useranswers').html(userAnswers);
+            
             localStorage.clear();
         });
         
