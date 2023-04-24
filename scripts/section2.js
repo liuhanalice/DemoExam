@@ -450,7 +450,7 @@ $(document).ready(function() {
           options: ["visitors to a natural science museum","professors of evolutionary science","a third-grade science class","students of comparative religions","attendees at a world cultural symposium"]
         },
         {
-          question: "Consider each of the choices separately and select all that apply. Which of the following statements can be logically inferred from the passage?",
+          question: "Which of the following statements can not be logically inferred from the passage?",
           options: ["Taxonomic classifications are not always absolute.", "The traditional religion of Madagascar involves augury.", "There are no longer enough resources on the main island to support the aye-aye population."]
         },
       ]
